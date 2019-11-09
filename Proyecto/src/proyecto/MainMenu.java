@@ -22,6 +22,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        ventanaArchivo = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -53,6 +54,19 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         jLabel6.setText("jLabel6");
+
+        ventanaArchivo.setTitle("Menú Archivos");
+
+        javax.swing.GroupLayout ventanaArchivoLayout = new javax.swing.GroupLayout(ventanaArchivo.getContentPane());
+        ventanaArchivo.getContentPane().setLayout(ventanaArchivoLayout);
+        ventanaArchivoLayout.setHorizontalGroup(
+            ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        ventanaArchivoLayout.setVerticalGroup(
+            ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 433, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -271,10 +285,10 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_camposMouseClicked
 
     private void archivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archivoMouseClicked
-        //ventanaarchivo.pack();
-        //ventanaarchivo.setModal(true);
-        //ventanaarchivo.setLocationRelativeTo(this);
-        //ventanaarchivo.setVisible(true);
+        ventanaArchivo.pack();
+        ventanaArchivo.setModal(true);
+        ventanaArchivo.setLocationRelativeTo(this);
+        ventanaArchivo.setVisible(true);
     }//GEN-LAST:event_archivoMouseClicked
 
     private void registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registroMouseClicked
@@ -351,5 +365,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JButton registro;
+    private javax.swing.JDialog ventanaArchivo;
     // End of variables declaration//GEN-END:variables
 }
