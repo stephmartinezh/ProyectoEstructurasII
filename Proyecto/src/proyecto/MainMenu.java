@@ -206,6 +206,11 @@ public class MainMenu extends javax.swing.JFrame {
                 archivoMouseClicked(evt);
             }
         });
+        archivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                archivoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei", 1, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
@@ -311,6 +316,10 @@ public class MainMenu extends javax.swing.JFrame {
         //ventanaindices.setLocationRelativeTo(this);
         //ventanaindices.setVisible(true);
     }//GEN-LAST:event_indicesMouseClicked
+
+    private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_archivoActionPerformed
 
 
     public static void main(String args[]) {
