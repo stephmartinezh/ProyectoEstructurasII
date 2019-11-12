@@ -1,13 +1,15 @@
 
 package proyecto;
-
+import java.awt.ComponentOrientation;
+import javax.swing.JOptionPane;
 
 public class MainMenu extends javax.swing.JFrame {
-
+    AdmArchivo ap;
 
     public MainMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -23,6 +25,24 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         ventanaArchivo = new javax.swing.JDialog();
+        jb_nuevoarchivo = new javax.swing.JButton();
+        jb_salvararchivo = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        ventanaCampo = new javax.swing.JDialog();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        CrearCampo = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        tf_nombrecampo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tf_tipocampo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        tf_sizecampo = new javax.swing.JTextField();
+        tb_keycampo = new javax.swing.JToggleButton();
+        GuardarCampo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -57,15 +77,168 @@ public class MainMenu extends javax.swing.JFrame {
 
         ventanaArchivo.setTitle("Menú Archivos");
 
+        jb_nuevoarchivo.setText("Nuevo Archivo");
+        jb_nuevoarchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_nuevoarchivoMouseClicked(evt);
+            }
+        });
+
+        jb_salvararchivo.setText("Salvar Archivo");
+        jb_salvararchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_salvararchivoActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cerrar Archivo");
+
+        jButton4.setText("Salir");
+
         javax.swing.GroupLayout ventanaArchivoLayout = new javax.swing.GroupLayout(ventanaArchivo.getContentPane());
         ventanaArchivo.getContentPane().setLayout(ventanaArchivoLayout);
         ventanaArchivoLayout.setHorizontalGroup(
             ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(ventanaArchivoLayout.createSequentialGroup()
+                .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventanaArchivoLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jb_nuevoarchivo)
+                            .addComponent(jb_salvararchivo)))
+                    .addGroup(ventanaArchivoLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton4)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         ventanaArchivoLayout.setVerticalGroup(
             ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addGroup(ventanaArchivoLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jb_nuevoarchivo)
+                .addGap(18, 18, 18)
+                .addComponent(jb_salvararchivo)
+                .addGap(36, 36, 36)
+                .addComponent(jButton3)
+                .addGap(34, 34, 34)
+                .addComponent(jButton4)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("Crear Campo");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Listar Campos");
+
+        jButton5.setText("Modificar Campos");
+
+        jButton6.setText("Borrar Campos");
+
+        javax.swing.GroupLayout ventanaCampoLayout = new javax.swing.GroupLayout(ventanaCampo.getContentPane());
+        ventanaCampo.getContentPane().setLayout(ventanaCampoLayout);
+        ventanaCampoLayout.setHorizontalGroup(
+            ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaCampoLayout.createSequentialGroup()
+                .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ventanaCampoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ventanaCampoLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addGap(4, 4, 4)))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(ventanaCampoLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ventanaCampoLayout.setVerticalGroup(
+            ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaCampoLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
+                .addGap(35, 35, 35)
+                .addComponent(jButton2)
+                .addGap(38, 38, 38)
+                .addComponent(jButton5)
+                .addGap(33, 33, 33)
+                .addComponent(jButton6)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        jLabel8.setText("Nombre:");
+
+        tf_nombrecampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nombrecampoActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Tipo:");
+
+        jLabel10.setText("Tamaño:");
+
+        tb_keycampo.setText("Key");
+
+        GuardarCampo.setText("Guardar");
+        GuardarCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarCampoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CrearCampoLayout = new javax.swing.GroupLayout(CrearCampo.getContentPane());
+        CrearCampo.getContentPane().setLayout(CrearCampoLayout);
+        CrearCampoLayout.setHorizontalGroup(
+            CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CrearCampoLayout.createSequentialGroup()
+                .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CrearCampoLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(CrearCampoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_tipocampo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tf_sizecampo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(tb_keycampo))))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearCampoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(GuardarCampo))
+        );
+        CrearCampoLayout.setVerticalGroup(
+            CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CrearCampoLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_tipocampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_sizecampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(tb_keycampo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(GuardarCampo))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,17 +296,17 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(registro, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(74, 74, 74))
+            .addComponent(registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4))
         );
 
@@ -283,10 +456,10 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void camposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camposMouseClicked
-        //ventanacampos.pack();
-        //ventanacampos.setModal(true);
-        //ventanacampos.setLocationRelativeTo(this);
-        //ventanacampos.setVisible(true);
+        ventanaCampo.pack();
+        ventanaCampo.setModal(true);
+        ventanaCampo.setLocationRelativeTo(this);
+        ventanaCampo.setVisible(true);
     }//GEN-LAST:event_camposMouseClicked
 
     private void archivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archivoMouseClicked
@@ -320,6 +493,38 @@ public class MainMenu extends javax.swing.JFrame {
     private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_archivoActionPerformed
+
+    private void jb_salvararchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_salvararchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_salvararchivoActionPerformed
+
+    private void jb_nuevoarchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_nuevoarchivoMouseClicked
+    String nombrearchivo="./";    
+    nombrearchivo+=JOptionPane.showInputDialog("Ingrese nombre del archivo");
+    nombrearchivo+=".cbm";
+        ap = new AdmArchivo(nombrearchivo);
+        ap.cargarArchivo();
+        ap.WriteA();
+        JOptionPane.showMessageDialog(this, "Archivo creado exitosamente");
+    }//GEN-LAST:event_jb_nuevoarchivoMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        CrearCampo.pack();
+        CrearCampo.setModal(true);
+        CrearCampo.setLocationRelativeTo(this);
+        CrearCampo.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tf_nombrecampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombrecampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nombrecampoActionPerformed
+
+    private void GuardarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampoMouseClicked
+        Campo campo =new Campo(tf_nombrecampo.getText(), tf_tipocampo.getText(), 10, tb_keycampo.getAutoscrolls());
+        ap.setCampo(campo);
+        ap.cargarArchivo();
+        ap.WriteA();
+    }//GEN-LAST:event_GuardarCampoMouseClicked
 
 
     public static void main(String args[]) {
@@ -355,17 +560,28 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog CrearCampo;
+    private javax.swing.JButton GuardarCampo;
     private javax.swing.JButton archivo;
     private javax.swing.JButton campos;
     private javax.swing.JButton estandarizacion;
     private javax.swing.JButton indices;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -373,7 +589,14 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JButton jb_nuevoarchivo;
+    private javax.swing.JButton jb_salvararchivo;
     private javax.swing.JButton registro;
+    private javax.swing.JToggleButton tb_keycampo;
+    private javax.swing.JTextField tf_nombrecampo;
+    private javax.swing.JTextField tf_sizecampo;
+    private javax.swing.JTextField tf_tipocampo;
     private javax.swing.JDialog ventanaArchivo;
+    private javax.swing.JDialog ventanaCampo;
     // End of variables declaration//GEN-END:variables
 }

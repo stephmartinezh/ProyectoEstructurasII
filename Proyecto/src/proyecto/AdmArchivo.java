@@ -8,18 +8,18 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class AdmArchivo {
-    private ArrayList<String> registros = new ArrayList();
+    private ArrayList<Campo> campos = new ArrayList();
     private File archivo = null;
 
     public AdmArchivo(String path) {
         archivo = new File(path);
     }
-    public ArrayList<String> getRegistros() {
-        return registros;
+    public ArrayList<Campo> getCampos() {
+        return campos;
     }
 
-    public void setRegistros(ArrayList<String> registros) {
-        this.registros = registros;
+    public void setCampos(ArrayList<Campo> registros) {
+        this.campos = registros;
     }
 
     public File getArchivo() {
@@ -29,6 +29,9 @@ public class AdmArchivo {
     public void setArchivo(File archivo) {
         this.archivo = archivo;
     }
+    public void setCampo(Campo a){
+        campos.add(a);
+    }
     
     
     public void WriteA() {
@@ -37,7 +40,7 @@ public class AdmArchivo {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (String t : registros) {
+            for (Campo t : campos) {
                 bw.writeObject(t);
             }
             bw.flush();
@@ -53,16 +56,16 @@ public class AdmArchivo {
     
     public void cargarArchivo() {
         try {            
-            registros = new ArrayList();
-            String temp;
+            campos = new ArrayList();
+            Campo temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                     = new FileInputStream(archivo);
                 ObjectInputStream objeto
                     = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (String) objeto.readObject()) != null) {
-                        registros.add(temp);
+                    while ((temp = (Campo) objeto.readObject()) != null) {
+                        campos.add(temp);
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
