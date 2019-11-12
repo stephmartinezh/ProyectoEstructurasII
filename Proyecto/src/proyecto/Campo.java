@@ -1,6 +1,7 @@
 package proyecto;
 
 public class Campo {
+
     String nombre;
     String tipo;
     int size;
@@ -44,5 +45,10 @@ public class Campo {
     public void setKey(boolean key) {
         this.key = key;
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre + "," + size + "," + tipo + "|";
+    }
+
 }

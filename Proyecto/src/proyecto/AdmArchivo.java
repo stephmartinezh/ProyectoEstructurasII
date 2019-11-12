@@ -53,6 +53,26 @@ public class AdmArchivo {
             }
         }
     }
+        public void WriteB(String cadena) {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            /*for (Campo t : campos) {
+                bw.writeObject(t);
+            }*/
+            bw.writeChars(cadena);
+            bw.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
+        }
+    }
     
     public void cargarArchivo() {
         try {            
