@@ -688,7 +688,7 @@ public class MainMenu extends javax.swing.JFrame {
             ap.WriteA();
             JOptionPane.showMessageDialog(this, "Archivo creado exitosamente");
             cantidadCampos++;
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "No se pueden almacenar mas campos en este archivo");
         }
     }//GEN-LAST:event_jb_nuevoarchivoMouseClicked
@@ -728,10 +728,10 @@ public class MainMenu extends javax.swing.JFrame {
         tamanoCampo.setValue(0);
         DefaultListModel modelo = new DefaultListModel();
         modelo.addElement(ap.getCampos());
-            tabla_campos.setModel(modelo);
-            DefaultComboBoxModel modelo1 = new DefaultComboBoxModel(ap.getCampos().toArray());
-            cb_campo.setModel(modelo1);
-            cb_modificarcampo.setModel(modelo1);
+        tabla_campos.setModel(modelo);
+        DefaultComboBoxModel modelo1 = new DefaultComboBoxModel(ap.getCampos().toArray());
+        cb_campo.setModel(modelo1);
+        cb_modificarcampo.setModel(modelo1);
     }//GEN-LAST:event_GuardarCampoMouseClicked
 
     private void salir_ventanaArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_ventanaArchivoMouseClicked
@@ -743,18 +743,16 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-    
-       // DefaultListModel modelo;
+
+        // DefaultListModel modelo;
         //modelo = new DefaultListModel(); 
-            //tabla_campos.setModel(modelo);        
-        
-        
-        Tabla_ListCamp.pack(); 
+        //tabla_campos.setModel(modelo);        
+        Tabla_ListCamp.pack();
         Tabla_ListCamp.setModal(true);
         Tabla_ListCamp.setLocationRelativeTo(this);
         Tabla_ListCamp.setVisible(true);
-    
-           
+
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -777,7 +775,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_campoMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        jd_modificarcampo.pack(); 
+        jd_modificarcampo.pack();
         jd_modificarcampo.setModal(true);
         jd_modificarcampo.setLocationRelativeTo(this);
         jd_modificarcampo.setVisible(true);
@@ -788,25 +786,6 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_nombrecampo1ActionPerformed
 
     private void GuardarCampo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampo1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarCampo1MouseClicked
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
-
-    private void cb_modificarcampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_modificarcampoItemStateChanged
-       int pos = cb_modificarcampo.getSelectedIndex();
-        if(evt.getStateChange()==1){
-            Campo temp= (Campo) cb_modificarcampo.getSelectedItem();
-            
-            if(temp!=null){
-                tf_nombrecampo1.setText(ap.getCampos().get(pos).getNombre());
-                tamanoCampo1.setValue(temp.getSize());
-                cb_tipoCampo1.setSelectedItem(temp.getTipo());
-                tb_keycampo1.setSelected(temp.isKey());
-            }
-        }
         String tipo = "";
         if (cb_tipoCampo1.getSelectedIndex() == 0) {
             tipo = "Integer";
@@ -817,11 +796,30 @@ public class MainMenu extends javax.swing.JFrame {
         } else if (cb_tipoCampo1.getSelectedIndex() == 3) {
             tipo = "Char";
         }
-        
+
         /*Campo temporal= new Campo( tf_nombrecampo1.getText().toString(), cb_tipoCampo1.getSelectedItem().toString(),(int)tamanoCampo1.getValue(),tb_keycampo1.isSelected());
         ap.getCampos().remove(pos);
         ap.getCampos().set(pos, temporal);
         //ap.WriteB(tipo);*/
+    }//GEN-LAST:event_GuardarCampo1MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void cb_modificarcampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_modificarcampoItemStateChanged
+        int pos = cb_modificarcampo.getSelectedIndex();
+        if (evt.getStateChange() == 1) {
+            Campo temp = (Campo) cb_modificarcampo.getSelectedItem();
+
+            if (temp != null) {
+                tf_nombrecampo1.setText(ap.getCampos().get(pos).getNombre());
+                tamanoCampo1.setValue(temp.getSize());
+                cb_tipoCampo1.setSelectedItem(temp.getTipo());
+                tb_keycampo1.setSelected(temp.isKey());
+            }
+        }
+
     }//GEN-LAST:event_cb_modificarcampoItemStateChanged
 
     public static void main(String args[]) {
