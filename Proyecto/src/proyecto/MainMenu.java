@@ -764,7 +764,6 @@ public class MainMenu extends javax.swing.JFrame {
         //System.out.println(ap.getCampos().size());
         for (int i = 0; i < ap.getCampos().size(); i++) {
             String cadena = ap.getCampos().get(i).toString();
-            System.out.println(cadena);
             ap.WriteB(cadena);
         }
         JOptionPane.showMessageDialog(this, "Se han salvado los campos correctamente");
