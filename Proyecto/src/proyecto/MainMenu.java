@@ -1,18 +1,27 @@
 package proyecto;
 
-import java.awt.ComponentOrientation;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainMenu extends javax.swing.JFrame {
 
     AdmArchivo ap;
     String nombreArchivo;
     int cantidadCampos = 0;
-    //ArrayList<Campo> listaCampos = new ArrayList();
+    JFileChooser seleccionar = new JFileChooser();
+    FileOutputStream salida;
+    File archivo2;
+    int condAbrirArchivos = 0;
 
     public MainMenu() {
         initComponents();
@@ -35,8 +44,9 @@ public class MainMenu extends javax.swing.JFrame {
         ventanaArchivo = new javax.swing.JDialog();
         jb_nuevoarchivo = new javax.swing.JButton();
         jb_salvararchivo = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jb_cerrarArchivo = new javax.swing.JButton();
         salir_ventanaArchivo = new javax.swing.JButton();
+        jb_abrirArchivo = new javax.swing.JButton();
         ventanaCampo = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -56,6 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
         cb_campo = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jb_salirTabla = new javax.swing.JButton();
         jd_modificarcampo = new javax.swing.JDialog();
         tf_nombrecampo1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -64,7 +75,7 @@ public class MainMenu extends javax.swing.JFrame {
         GuardarCampo1 = new javax.swing.JButton();
         tamanoCampo1 = new javax.swing.JSpinner();
         cb_tipoCampo1 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        salir_modificarCampo = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         cb_modificarcampo = new javax.swing.JComboBox<>();
         jButton8 = new javax.swing.JButton();
@@ -116,10 +127,10 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Cerrar Archivo");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_cerrarArchivo.setText("Cerrar Archivo");
+        jb_cerrarArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jb_cerrarArchivoMouseClicked(evt);
             }
         });
 
@@ -130,36 +141,46 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jb_abrirArchivo.setText("Abrir Archivo");
+        jb_abrirArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_abrirArchivoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout ventanaArchivoLayout = new javax.swing.GroupLayout(ventanaArchivo.getContentPane());
         ventanaArchivo.getContentPane().setLayout(ventanaArchivoLayout);
         ventanaArchivoLayout.setHorizontalGroup(
             ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaArchivoLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_abrirArchivo)
+                    .addComponent(jb_cerrarArchivo)
+                    .addComponent(jb_salvararchivo)
                     .addGroup(ventanaArchivoLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jb_nuevoarchivo)
-                            .addComponent(jb_salvararchivo)))
-                    .addGroup(ventanaArchivoLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(salir_ventanaArchivo)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addComponent(salir_ventanaArchivo))
+                    .addComponent(jb_nuevoarchivo))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         ventanaArchivoLayout.setVerticalGroup(
             ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaArchivoLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(29, 29, 29)
                 .addComponent(jb_nuevoarchivo)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addComponent(jb_abrirArchivo)
+                .addGap(18, 18, 18)
                 .addComponent(jb_salvararchivo)
-                .addGap(28, 28, 28)
-                .addComponent(jButton3)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
+                .addComponent(jb_cerrarArchivo)
+                .addGap(18, 18, 18)
                 .addComponent(salir_ventanaArchivo)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        ventanaCampo.setTitle("Menú de Campos");
 
         jButton1.setText("Crear Campo");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,6 +241,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        CrearCampo.setTitle("Crear Campos");
 
         jLabel8.setText("Nombre:");
 
@@ -307,6 +330,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        Tabla_ListCamp.setTitle("Listar Campos");
+
         cb_campo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_campoItemStateChanged(evt);
@@ -349,6 +374,13 @@ public class MainMenu extends javax.swing.JFrame {
         jTable1.setToolTipText("");
         jScrollPane2.setViewportView(jTable1);
 
+        jb_salirTabla.setText("Salir");
+        jb_salirTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_salirTablaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout Tabla_ListCampLayout = new javax.swing.GroupLayout(Tabla_ListCamp.getContentPane());
         Tabla_ListCamp.getContentPane().setLayout(Tabla_ListCampLayout);
         Tabla_ListCampLayout.setHorizontalGroup(
@@ -356,12 +388,16 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(Tabla_ListCampLayout.createSequentialGroup()
                 .addGroup(Tabla_ListCampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Tabla_ListCampLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cb_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Tabla_ListCampLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Tabla_ListCampLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cb_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Tabla_ListCampLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jb_salirTabla)
+                .addGap(44, 44, 44))
         );
         Tabla_ListCampLayout.setVerticalGroup(
             Tabla_ListCampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,8 +406,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(cb_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jb_salirTabla)
+                .addContainerGap())
         );
+
+        jd_modificarcampo.setTitle("Modificar Campo");
 
         tf_nombrecampo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,10 +436,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         cb_tipoCampo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integer", "Double", "String", "Char", " " }));
 
-        jButton7.setText("Salir");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        salir_modificarCampo.setText("Salir");
+        salir_modificarCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+                salir_modificarCampoMouseClicked(evt);
             }
         });
 
@@ -445,7 +485,7 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(0, 53, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificarcampoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton7)))
+                        .addComponent(salir_modificarCampo)))
                 .addContainerGap())
         );
         jd_modificarcampoLayout.setVerticalGroup(
@@ -472,7 +512,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(GuardarCampo1)
                     .addComponent(jButton8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(salir_modificarCampo)
                 .addContainerGap())
         );
 
@@ -730,21 +770,37 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_archivoActionPerformed
 
     private void jb_nuevoarchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_nuevoarchivoMouseClicked
-        if (cantidadCampos <= 15) {
-            String nombrearchivo = "./", nombre = "";
-            nombre += JOptionPane.showInputDialog("Ingrese nombre del archivo");
-            nombreArchivo = nombre;//variable global
-            nombrearchivo += nombre;
-            nombrearchivo += ".cbm";
-            ap = new AdmArchivo(nombrearchivo);
-            ap.cargarArchivo();
-            ap.WriteA();
-            JOptionPane.showMessageDialog(this, "Archivo creado exitosamente");
-            cantidadCampos++;
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pueden almacenar mas campos en este archivo");
+        if (seleccionar.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION) {
+            archivo2 = seleccionar.getSelectedFile();
+            nombreArchivo = GuardarArchivo();
+            JOptionPane.showMessageDialog(this, "El archivo fue guardado exitosamente");
+            ap = new AdmArchivo(nombreArchivo);
+            condAbrirArchivos = 1;
         }
+//            String nombrearchivo = "./", nombre = "";
+//            nombre += JOptionPane.showInputDialog("Ingrese nombre del archivo");
+//            nombreArchivo = nombre;//variable global
+//            nombrearchivo += nombre;
+//            nombrearchivo += ".cbm";
+//            ap = new AdmArchivo(nombrearchivo);
+//            ap.cargarArchivo();
+//            ap.WriteA();
+//            JOptionPane.showMessageDialog(this, "Archivo creado exitosamente");
+//            cantidadCampos++;
+
+        /*DEJO ESTO COMENTADO POR SI LO OCUPAMOS O POR SI QUERES VER LO QUE CAMBIE!! 
+                                         ¡¡¡¡¡DESPUÉS LO BORRAMOS!!!!!!!*/
     }//GEN-LAST:event_jb_nuevoarchivoMouseClicked
+
+    public String GuardarArchivo() {
+        String nombreArchivo2 = "";
+        try {
+            salida = new FileOutputStream(archivo2);
+            nombreArchivo2 = seleccionar.getSelectedFile().getPath();
+        } catch (Exception e) {
+        }
+        return nombreArchivo2;
+    }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         CrearCampo.pack();
@@ -758,28 +814,32 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_nombrecampoActionPerformed
 
     private void GuardarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampoMouseClicked
-        String tipo = "";
-        if (cb_tipoCampo.getSelectedIndex() == 0) {
-            tipo = "Integer";
-        } else if (cb_tipoCampo.getSelectedIndex() == 1) {
-            tipo = "Double";
-        } else if (cb_tipoCampo.getSelectedIndex() == 2) {
-            tipo = "String";
-        } else if (cb_tipoCampo.getSelectedIndex() == 3) {
-            tipo = "Char";
+        if (cantidadCampos <= 15) {
+            String tipo = "";
+            if (cb_tipoCampo.getSelectedIndex() == 0) {
+                tipo = "Integer";
+            } else if (cb_tipoCampo.getSelectedIndex() == 1) {
+                tipo = "Double";
+            } else if (cb_tipoCampo.getSelectedIndex() == 2) {
+                tipo = "String";
+            } else if (cb_tipoCampo.getSelectedIndex() == 3) {
+                tipo = "Char";
+            }
+            Campo campo = new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected());
+            ap.getCampos().add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected()));
+            //System.out.println(ap.getCampos().size());
+            //listaCampos.add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.getAutoscrolls()));
+            /*ap.setCampo(campo);
+            ap.cargarArchivo();
+            ap.WriteA();*/
+            JOptionPane.showMessageDialog(this, "Campos guardados exitosamente");
+            tf_nombrecampo.setText("");
+            cb_tipoCampo.setSelectedIndex(0);
+            tamanoCampo.setValue(0);
+            cantidadCampos++;
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pueden almacenar mas campos en este archivo");
         }
-        Campo campo = new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected());
-        ap.getCampos().add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected()));
-        //System.out.println(ap.getCampos().size());
-        //listaCampos.add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.getAutoscrolls()));
-        /*ap.setCampo(campo);
-        ap.cargarArchivo();
-        ap.WriteA();*/
-        JOptionPane.showMessageDialog(this, "Campos guardados exitosamente");
-        tf_nombrecampo.setText("");
-        cb_tipoCampo.setSelectedIndex(0);
-        tamanoCampo.setValue(0);
-       
     }//GEN-LAST:event_GuardarCampoMouseClicked
 
     private void salir_ventanaArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_ventanaArchivoMouseClicked
@@ -791,7 +851,6 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-         
         DefaultComboBoxModel modelo1 = new DefaultComboBoxModel(ap.getCampos().toArray());
         cb_campo.setModel(modelo1);
         cb_modificarcampo.setModel(modelo1);
@@ -802,14 +861,13 @@ public class MainMenu extends javax.swing.JFrame {
         Tabla_ListCamp.setModal(true);
         Tabla_ListCamp.setLocationRelativeTo(this);
         Tabla_ListCamp.setVisible(true);
-
-
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jb_cerrarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cerrarArchivoMouseClicked
         //nombredelarchivo(variable global).close()
         cantidadCampos = 0;
-    }//GEN-LAST:event_jButton3MouseClicked
+        condAbrirArchivos = 0;
+    }//GEN-LAST:event_jb_cerrarArchivoMouseClicked
 
     private void jb_salvararchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salvararchivoMouseClicked
         //System.out.println(ap.getCampos().size());
@@ -846,16 +904,16 @@ public class MainMenu extends javax.swing.JFrame {
         } else if (cb_tipoCampo1.getSelectedIndex() == 3) {
             tipo = "Char";
         }
-        int pos=cb_modificarcampo.getSelectedIndex();
+        int pos = cb_modificarcampo.getSelectedIndex();
         System.out.println(pos);
-        Campo temporal= new Campo( tf_nombrecampo1.getText().toString(), cb_tipoCampo1.getSelectedItem().toString(),(int)tamanoCampo1.getValue(),tb_keycampo1.isSelected());
+        Campo temporal = new Campo(tf_nombrecampo1.getText().toString(), cb_tipoCampo1.getSelectedItem().toString(), (int) tamanoCampo1.getValue(), tb_keycampo1.isSelected());
         ap.getCampos().set(pos, temporal);
         ap.WriteB(tipo);
     }//GEN-LAST:event_GuardarCampo1MouseClicked
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
+    private void salir_modificarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_modificarCampoMouseClicked
+        jd_modificarcampo.setVisible(false);
+    }//GEN-LAST:event_salir_modificarCampoMouseClicked
 
     private void cb_modificarcampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_modificarcampoItemStateChanged
         int pos = cb_modificarcampo.getSelectedIndex();
@@ -889,42 +947,79 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void cb_campoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_campoItemStateChanged
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Tipo","Tamaño"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Tipo", "Tamaño"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class,java.lang.String.class,java.lang.Integer.class
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
-                
-                for (Campo t : ap.getCampos()) {
-                    if (t.isKey()) {
-                     Object row[]={t.getNombre()+"(KEY)",t.getTipo(),t.getSize()};
-                    DefaultTableModel m=(DefaultTableModel) jTable1.getModel();
-                    m.addRow(row);  
-                    }else{
-                    Object row[]={t.getNombre(),t.getTipo(),t.getSize()};
-                    DefaultTableModel m=(DefaultTableModel) jTable1.getModel();
-                    m.addRow(row);
-                    jTable1.setModel(m);
-                    }
-                }
+
+        for (Campo t : ap.getCampos()) {
+            if (t.isKey()) {
+                Object row[] = {t.getNombre() + "(KEY)", t.getTipo(), t.getSize()};
+                DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+                m.addRow(row);
+            } else {
+                Object row[] = {t.getNombre(), t.getTipo(), t.getSize()};
+                DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+                m.addRow(row);
+                jTable1.setModel(m);
+            }
+        }
     }//GEN-LAST:event_cb_campoItemStateChanged
+
+    private void jb_abrirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArchivoMouseClicked
+        if (condAbrirArchivos == 0) {
+            JFileChooser fc = new JFileChooser();
+            FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
+            fc.setFileFilter(filtro);
+            File archivo3;
+            int op = fc.showOpenDialog(this);
+            if (op == JFileChooser.APPROVE_OPTION) {
+                archivo3 = fc.getSelectedFile();
+                //ocupamos algo para leer aqui
+                //ap.cargarArchivo();
+                for (int i = 0; i < ap.getCampos().size(); i++) {
+                    System.out.println(ap.getCampos().get(i));
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede abrir un archivo cuando ya hay uno abierto");
+        }
+    }//GEN-LAST:event_jb_abrirArchivoMouseClicked
+
+    private void jb_salirTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salirTablaMouseClicked
+        Tabla_ListCamp.setVisible(false);
+    }//GEN-LAST:event_jb_salirTablaMouseClicked
+
+    public void leerArchivo(String path) throws FileNotFoundException, IOException {
+        try {
+            //Stream para leer archivo
+            ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
+            //Se lee el objeto de archivo y este debe convertirse al tipo de clase que corresponde
+            AdmArchivo clase = (AdmArchivo) file.readObject();
+            //ap.getCampos().add(e)
+            file.close();
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -973,11 +1068,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton indices;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1001,10 +1094,14 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jb_abrirArchivo;
+    private javax.swing.JButton jb_cerrarArchivo;
     private javax.swing.JButton jb_nuevoarchivo;
+    private javax.swing.JButton jb_salirTabla;
     private javax.swing.JButton jb_salvararchivo;
     private javax.swing.JDialog jd_modificarcampo;
     private javax.swing.JButton registro;
+    private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;
     private javax.swing.JSpinner tamanoCampo;
     private javax.swing.JSpinner tamanoCampo1;
