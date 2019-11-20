@@ -10,8 +10,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainMenu extends javax.swing.JFrame {
 
@@ -985,8 +983,8 @@ public class MainMenu extends javax.swing.JFrame {
     private void jb_abrirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArchivoMouseClicked
         if (condAbrirArchivos == 0) {
             JFileChooser fc = new JFileChooser();
-            FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
-            fc.setFileFilter(filtro);
+            /*FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
+            fc.setFileFilter(filtro);*/
             File archivo3;
             int op = fc.showOpenDialog(this);
             if (op == JFileChooser.APPROVE_OPTION) {
