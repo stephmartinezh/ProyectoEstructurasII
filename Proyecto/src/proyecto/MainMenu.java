@@ -20,6 +20,7 @@ public class MainMenu extends javax.swing.JFrame {
     FileOutputStream salida;
     File archivo2;
     int condAbrirArchivos = 0;
+    boolean key = false;
 
     public MainMenu() {
         initComponents();
@@ -49,17 +50,18 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        salir_MenuCampo = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         CrearCampo = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
         tf_nombrecampo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        tb_keycampo = new javax.swing.JToggleButton();
         GuardarCampo = new javax.swing.JButton();
-        tamanoCampo = new javax.swing.JSpinner();
-        cb_tipoCampo = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        tipoCampo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        keycampo = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
         Tabla_ListCamp = new javax.swing.JDialog();
         cb_campo = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -68,15 +70,15 @@ public class MainMenu extends javax.swing.JFrame {
         jd_modificarcampo = new javax.swing.JDialog();
         tf_nombrecampo1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        tb_keycampo1 = new javax.swing.JToggleButton();
         GuardarCampo1 = new javax.swing.JButton();
-        tamanoCampo1 = new javax.swing.JSpinner();
-        cb_tipoCampo1 = new javax.swing.JComboBox<>();
         salir_modificarCampo = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         cb_modificarcampo = new javax.swing.JComboBox<>();
-        jButton8 = new javax.swing.JButton();
+        Borrar = new javax.swing.JButton();
+        tipoCampo1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        keycampo1 = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -180,6 +182,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         ventanaCampo.setTitle("Menú de Campos");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jButton1.setText("Crear Campo");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,6 +190,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jButton2.setText("Listar Campos");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -194,6 +198,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jButton5.setText("Modificar Campos");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,47 +206,50 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Borrar Campos");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        salir_MenuCampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        salir_MenuCampo.setText("Salir");
+        salir_MenuCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                salir_MenuCampoMouseClicked(evt);
             }
         });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
+        jLabel12.setText("Menú de Campos");
 
         javax.swing.GroupLayout ventanaCampoLayout = new javax.swing.GroupLayout(ventanaCampo.getContentPane());
         ventanaCampo.getContentPane().setLayout(ventanaCampoLayout);
         ventanaCampoLayout.setHorizontalGroup(
             ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaCampoLayout.createSequentialGroup()
-                .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ventanaCampoLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
-                    .addGroup(ventanaCampoLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(salir_MenuCampo)
+                    .addComponent(jButton5)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel12))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         ventanaCampoLayout.setVerticalGroup(
             ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ventanaCampoLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaCampoLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35)
                 .addComponent(jButton2)
                 .addGap(40, 40, 40)
                 .addComponent(jButton5)
-                .addGap(31, 31, 31)
-                .addComponent(jButton6)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(salir_MenuCampo)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         CrearCampo.setTitle("Crear Campos");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         jLabel8.setText("Nombre:");
 
         tf_nombrecampo.addActionListener(new java.awt.event.ActionListener() {
@@ -250,12 +258,10 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         jLabel9.setText("Tipo:");
 
-        jLabel10.setText("Tamaño:");
-
-        tb_keycampo.setText("Key");
-
+        GuardarCampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         GuardarCampo.setText("Guardar");
         GuardarCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,10 +269,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        tamanoCampo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
-
-        cb_tipoCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integer", "Double", "String", "Char", " " }));
-
+        jButton4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         jButton4.setText("Salir");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -274,58 +277,75 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
+        jLabel10.setText("Key:");
+
+        keycampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
+        keycampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione uno--", "Si", "No" }));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel14.setText("Crear Campos");
+
         javax.swing.GroupLayout CrearCampoLayout = new javax.swing.GroupLayout(CrearCampo.getContentPane());
         CrearCampo.getContentPane().setLayout(CrearCampoLayout);
         CrearCampoLayout.setHorizontalGroup(
             CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CrearCampoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(CrearCampoLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CrearCampoLayout.createSequentialGroup()
-                        .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_tipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(CrearCampoLayout.createSequentialGroup()
+                        .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(CrearCampoLayout.createSequentialGroup()
-                                    .addGap(51, 51, 51)
-                                    .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel8)))
-                                .addGroup(CrearCampoLayout.createSequentialGroup()
-                                    .addGap(49, 49, 49)
-                                    .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel10)
-                                        .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(tamanoCampo, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tb_keycampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(GuardarCampo)))))
-                        .addGap(0, 67, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearCampoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)))
-                .addContainerGap())
+                                    .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                        .addGroup(CrearCampoLayout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                .addComponent(keycampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel14)))
+                                        .addComponent(tipoCampo, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearCampoLayout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addGroup(CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(11, 11, 11)))
+                            .addGroup(CrearCampoLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(GuardarCampo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28))))
         );
         CrearCampoLayout.setVerticalGroup(
             CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CrearCampoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearCampoLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cb_tipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(tamanoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(tb_keycampo)
-                .addGap(34, 34, 34)
+                .addComponent(keycampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(GuardarCampo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap())
+                .addGap(37, 37, 37))
         );
 
         Tabla_ListCamp.setTitle("Listar Campos");
@@ -419,10 +439,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel11.setText("Tipo:");
 
-        jLabel12.setText("Tamaño:");
-
-        tb_keycampo1.setText("Key");
-
+        GuardarCampo1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         GuardarCampo1.setText("Guardar");
         GuardarCampo1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -430,10 +447,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        tamanoCampo1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
-
-        cb_tipoCampo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integer", "Double", "String", "Char", " " }));
-
+        salir_modificarCampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         salir_modificarCampo.setText("Salir");
         salir_modificarCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -441,20 +455,32 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         jLabel13.setText("Nombre:");
 
+        cb_modificarcampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         cb_modificarcampo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_modificarcampoItemStateChanged(evt);
             }
         });
 
-        jButton8.setText("Borrar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+        Borrar.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
+        Borrar.setText("Borrar");
+        Borrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BorrarMouseClicked(evt);
             }
         });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
+        jLabel15.setText("Key:");
+
+        keycampo1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
+        keycampo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione uno--", "Si", "No" }));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel16.setText("Modificar Campos");
 
         javax.swing.GroupLayout jd_modificarcampoLayout = new javax.swing.GroupLayout(jd_modificarcampo.getContentPane());
         jd_modificarcampo.getContentPane().setLayout(jd_modificarcampoLayout);
@@ -462,34 +488,39 @@ public class MainMenu extends javax.swing.JFrame {
             jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_modificarcampoLayout.createSequentialGroup()
                 .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_modificarcampoLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cb_tipoCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tamanoCampo1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tb_keycampo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(tf_nombrecampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(cb_modificarcampo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jd_modificarcampoLayout.createSequentialGroup()
-                                .addComponent(GuardarCampo1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton8)))
-                        .addGap(0, 53, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificarcampoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(salir_modificarCampo)))
+                        .addComponent(salir_modificarCampo))
+                    .addGroup(jd_modificarcampoLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel11)
+                            .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(keycampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15))
+                                .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tipoCampo1)
+                                    .addComponent(tf_nombrecampo1)
+                                    .addComponent(cb_modificarcampo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jd_modificarcampoLayout.createSequentialGroup()
+                                .addComponent(GuardarCampo1)
+                                .addGap(18, 18, 18)
+                                .addComponent(Borrar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jd_modificarcampoLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel16)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jd_modificarcampoLayout.setVerticalGroup(
             jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_modificarcampoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
                 .addComponent(cb_modificarcampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel13)
@@ -497,19 +528,17 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(tf_nombrecampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cb_tipoCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jLabel12)
+                .addGap(11, 11, 11)
+                .addComponent(tipoCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tamanoCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(tb_keycampo1)
-                .addGap(34, 34, 34)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(keycampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(jd_modificarcampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GuardarCampo1)
-                    .addComponent(jButton8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Borrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(salir_modificarCampo)
                 .addContainerGap())
         );
@@ -813,27 +842,47 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void GuardarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampoMouseClicked
         if (cantidadCampos <= 15) {
+            int tamanoCampo = 0;
+            boolean llave = false;
             String tipo = "";
-            if (cb_tipoCampo.getSelectedIndex() == 0) {
+            if (tipoCampo.getText().equalsIgnoreCase("integer") || tipoCampo.getText().equalsIgnoreCase("entero") || tipoCampo.getText().equalsIgnoreCase("int")) {
                 tipo = "Integer";
-            } else if (cb_tipoCampo.getSelectedIndex() == 1) {
+                tamanoCampo = 4;
+            } else if (tipoCampo.getText().equalsIgnoreCase("double")) {
                 tipo = "Double";
-            } else if (cb_tipoCampo.getSelectedIndex() == 2) {
+                tamanoCampo = 4;
+            } else if (tipoCampo.getText().equalsIgnoreCase("string") || tipoCampo.getText().equalsIgnoreCase("cadena")) {
                 tipo = "String";
-            } else if (cb_tipoCampo.getSelectedIndex() == 3) {
+                tamanoCampo = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el tamaño del campo"));
+            } else if (tipoCampo.getText().equalsIgnoreCase("char") || tipoCampo.getText().equalsIgnoreCase("caracter") || tipoCampo.getText().equalsIgnoreCase("character")) {
                 tipo = "Char";
+                tamanoCampo = 1;
+            } else {
+                tipo = tipoCampo.getText();
+                tamanoCampo = 4;
             }
-            Campo campo = new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected());
-            ap.getCampos().add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.isSelected()));
+            if (key == false) {
+                if (keycampo.getSelectedIndex() == 1) {
+                    llave = true;
+                    key = true;
+                } else if (keycampo.getSelectedIndex() == 2) {
+                    llave = false;
+                }
+            } else {
+                llave = false;
+            }
+
+            Campo campo = new Campo(tf_nombrecampo.getText(), tipo, tamanoCampo, llave);
+            ap.getCampos().add(new Campo(tf_nombrecampo.getText(), tipo, tamanoCampo, llave));
             //System.out.println(ap.getCampos().size());
             //listaCampos.add(new Campo(tf_nombrecampo.getText(), tipo, (Integer) tamanoCampo.getValue(), tb_keycampo.getAutoscrolls()));
             /*ap.setCampo(campo);
             ap.cargarArchivo();
             ap.WriteA();*/
-            JOptionPane.showMessageDialog(this, "Campos guardados exitosamente");
+            JOptionPane.showMessageDialog(this, "Campo guardado exitosamente");
             tf_nombrecampo.setText("");
-            cb_tipoCampo.setSelectedIndex(0);
-            tamanoCampo.setValue(0);
+            tipoCampo.setText("");
+            keycampo.setSelectedIndex(0);
             cantidadCampos++;
         } else {
             JOptionPane.showMessageDialog(this, "No se pueden almacenar mas campos en este archivo");
@@ -865,6 +914,7 @@ public class MainMenu extends javax.swing.JFrame {
         //nombredelarchivo(variable global).close()
         cantidadCampos = 0;
         condAbrirArchivos = 0;
+        key = false;
     }//GEN-LAST:event_jb_cerrarArchivoMouseClicked
 
     private void jb_salvararchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salvararchivoMouseClicked
@@ -893,20 +943,38 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void GuardarCampo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampo1MouseClicked
         String tipo = "";
-        if (cb_tipoCampo1.getSelectedIndex() == 0) {
+        boolean llave = false;
+        int tamanoCampo = 0;
+        if (tipoCampo1.getText().equalsIgnoreCase("integer") || tipoCampo1.getText().equalsIgnoreCase("entero") || tipoCampo1.getText().equalsIgnoreCase("int")) {
             tipo = "Integer";
-        } else if (cb_tipoCampo1.getSelectedIndex() == 1) {
+            tamanoCampo = 4;
+        } else if (tipoCampo1.getText().equalsIgnoreCase("double")) {
             tipo = "Double";
-        } else if (cb_tipoCampo1.getSelectedIndex() == 2) {
+            tamanoCampo = 4;
+        } else if (tipoCampo1.getText().equalsIgnoreCase("string") || tipoCampo1.getText().equalsIgnoreCase("cadena")) {
             tipo = "String";
-        } else if (cb_tipoCampo1.getSelectedIndex() == 3) {
+            tamanoCampo = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el tamaño del campo"));
+        } else if (tipoCampo1.getText().equalsIgnoreCase("char") || tipoCampo1.getText().equalsIgnoreCase("caracter") || tipoCampo1.getText().equalsIgnoreCase("character")) {
             tipo = "Char";
+            tamanoCampo = 1;
+        } else {
+            tipo = tipoCampo.getText();
+            tamanoCampo = 4;
+        }
+        if (keycampo.getSelectedIndex() == 1) {
+            llave = true;
+            key = true;
+        } else if (keycampo.getSelectedIndex() == 2) {
+            llave = false;
         }
         int pos = cb_modificarcampo.getSelectedIndex();
-        System.out.println(pos);
-        Campo temporal = new Campo(tf_nombrecampo1.getText().toString(), cb_tipoCampo1.getSelectedItem().toString(), (int) tamanoCampo1.getValue(), tb_keycampo1.isSelected());
+        Campo temporal = new Campo(tf_nombrecampo1.getText(), tipo, tamanoCampo, llave);
         ap.getCampos().set(pos, temporal);
         ap.WriteB(tipo);
+        JOptionPane.showMessageDialog(this, "Campo modificado exitosamente");
+        tf_nombrecampo.setText("");
+        tipoCampo.setText("");
+        keycampo.setSelectedIndex(0);
     }//GEN-LAST:event_GuardarCampo1MouseClicked
 
     private void salir_modificarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_modificarCampoMouseClicked
@@ -920,9 +988,16 @@ public class MainMenu extends javax.swing.JFrame {
 
             if (temp != null) {
                 tf_nombrecampo1.setText(ap.getCampos().get(pos).getNombre());
-                tamanoCampo1.setValue(temp.getSize());
-                cb_tipoCampo1.setSelectedItem(temp.getTipo());
-                tb_keycampo1.setSelected(temp.isKey());
+                //int size = 
+                //tamanoCampo1.setText(temp.getSize());
+                //tamanoCampo1.setValue(temp.getSize());
+                tipoCampo1.setText(temp.getTipo());
+                if(temp.isKey()){
+                    keycampo1.setSelectedIndex(1);
+                }else{
+                    keycampo1.setSelectedIndex(2);
+                }
+                //tb_keycampo1.setSelected(temp.isKey());
             }
         }
 
@@ -932,16 +1007,9 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_campoActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        ap.getCampos().remove(cb_modificarcampo.getSelectedIndex());
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        jd_modificarcampo.pack();
-        jd_modificarcampo.setModal(true);
-        jd_modificarcampo.setLocationRelativeTo(this);
-        jd_modificarcampo.setVisible(true);
-    }//GEN-LAST:event_jButton6MouseClicked
+    private void salir_MenuCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_MenuCampoMouseClicked
+        ventanaCampo.setVisible(false);
+    }//GEN-LAST:event_salir_MenuCampoMouseClicked
 
     private void cb_campoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_campoItemStateChanged
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -991,9 +1059,9 @@ public class MainMenu extends javax.swing.JFrame {
                 archivo3 = fc.getSelectedFile();
                 //ocupamos algo para leer aqui
                 //ap.cargarArchivo();
-                for (int i = 0; i < ap.getCampos().size(); i++) {
+                /*for (int i = 0; i < ap.getCampos().size(); i++) {
                     System.out.println(ap.getCampos().get(i));
-                }
+                }*/
             }
         } else {
             JOptionPane.showMessageDialog(this, "No se puede abrir un archivo cuando ya hay uno abierto");
@@ -1004,11 +1072,13 @@ public class MainMenu extends javax.swing.JFrame {
         Tabla_ListCamp.setVisible(false);
     }//GEN-LAST:event_jb_salirTablaMouseClicked
 
+    private void BorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BorrarMouseClicked
+        ap.getCampos().remove(cb_modificarcampo.getSelectedIndex());
+    }//GEN-LAST:event_BorrarMouseClicked
+
     public void leerArchivo(String path) throws FileNotFoundException, IOException {
         try {
-            //Stream para leer archivo
             ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
-            //Se lee el objeto de archivo y este debe convertirse al tipo de clase que corresponde
             AdmArchivo clase = (AdmArchivo) file.readObject();
             //ap.getCampos().add(e)
             file.close();
@@ -1052,6 +1122,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Borrar;
     private javax.swing.JDialog CrearCampo;
     private javax.swing.JButton GuardarCampo;
     private javax.swing.JButton GuardarCampo1;
@@ -1060,21 +1131,20 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton campos;
     private javax.swing.JComboBox<String> cb_campo;
     private javax.swing.JComboBox<String> cb_modificarcampo;
-    private javax.swing.JComboBox<String> cb_tipoCampo;
-    private javax.swing.JComboBox<String> cb_tipoCampo1;
     private javax.swing.JButton estandarizacion;
     private javax.swing.JButton indices;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1098,15 +1168,16 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jb_salirTabla;
     private javax.swing.JButton jb_salvararchivo;
     private javax.swing.JDialog jd_modificarcampo;
+    private javax.swing.JComboBox<String> keycampo;
+    private javax.swing.JComboBox<String> keycampo1;
     private javax.swing.JButton registro;
+    private javax.swing.JButton salir_MenuCampo;
     private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;
-    private javax.swing.JSpinner tamanoCampo;
-    private javax.swing.JSpinner tamanoCampo1;
-    private javax.swing.JToggleButton tb_keycampo;
-    private javax.swing.JToggleButton tb_keycampo1;
     private javax.swing.JTextField tf_nombrecampo;
     private javax.swing.JTextField tf_nombrecampo1;
+    private javax.swing.JTextField tipoCampo;
+    private javax.swing.JTextField tipoCampo1;
     private javax.swing.JDialog ventanaArchivo;
     private javax.swing.JDialog ventanaCampo;
     // End of variables declaration//GEN-END:variables
