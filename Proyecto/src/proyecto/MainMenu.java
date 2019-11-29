@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -155,13 +157,14 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(ventanaArchivoLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jb_abrirArchivo)
                     .addComponent(jb_cerrarArchivo)
-                    .addComponent(jb_salvararchivo)
                     .addGroup(ventanaArchivoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(salir_ventanaArchivo))
-                    .addComponent(jb_nuevoarchivo))
+                    .addComponent(jb_nuevoarchivo)
+                    .addGroup(ventanaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jb_abrirArchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jb_salvararchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         ventanaArchivoLayout.setVerticalGroup(
@@ -225,9 +228,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(ventanaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(salir_MenuCampo)
-                    .addComponent(jButton5)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listar_campos)
-                    .addComponent(jButton1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -907,10 +910,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_cerrarArchivoMouseClicked
 
     private void jb_salvararchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salvararchivoMouseClicked
+        /*
         for (int i = 0; i < ap.getCampos().size(); i++) {
             String cadena = ap.getCampos().get(i).toString();
             ap.WriteB(cadena);
-        }
+        }*/
+        //write
+        ap.write();
         JOptionPane.showMessageDialog(this, "Se han salvado los campos correctamente");
     }//GEN-LAST:event_jb_salvararchivoMouseClicked
 
@@ -991,18 +997,28 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jb_abrirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArchivoMouseClicked
         if (condAbrirArchivos == 0) {
-            JFileChooser fc = new JFileChooser();
-            /*FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
-            fc.setFileFilter(filtro);*/
-            File archivo3;
-            int op = fc.showOpenDialog(this);
-            if (op == JFileChooser.APPROVE_OPTION) {
+            try {
+                JFileChooser fc = new JFileChooser();
+                /*FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
+                fc.setFileFilter(filtro);*/
+                File archivo3;
+                
+                int op = fc.showOpenDialog(this);
+                if (op == JFileChooser.APPROVE_OPTION) {
                 archivo3 = fc.getSelectedFile();
                 //ocupamos algo para leer aqui
+                ap=new AdmArchivo(archivo3.getPath());
+                ap.read();
+                System.out.println("open!");
+                condAbrirArchivos=1;
                 //ap.cargarArchivo();
                 /*for (int i = 0; i < ap.getCampos().size(); i++) {
-                    System.out.println(ap.getCampos().get(i));
+                System.out.println(ap.getCampos().get(i));
                 }*/
+                }
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "No se puede abrir un archivo cuando ya hay uno abierto");

@@ -3,6 +3,7 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -33,6 +34,31 @@ public class AdmArchivo {
         campos.add(a);
     }
     
+    public void write(){
+        try{
+            File filename=new File(archivo.getPath());
+            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename));
+            escribir.writeObject(campos);
+            escribir.close();
+            
+
+        }catch(IOException e){
+
+        }
+    }
+    
+    public void read() throws ClassNotFoundException{
+        File filename=new File(archivo.getPath());
+        try{
+            ObjectInputStream leer=new ObjectInputStream(new FileInputStream(filename));
+            campos=(ArrayList<Campo>)leer.readObject();
+            leer.close();
+            
+            
+        }catch(IOException e){
+            
+        }
+    }
     
     public void WriteA() {
         FileOutputStream fw = null;
