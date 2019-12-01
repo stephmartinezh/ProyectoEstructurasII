@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
@@ -907,6 +906,8 @@ public class MainMenu extends javax.swing.JFrame {
         cantidadCampos = 0;
         condAbrirArchivos = 0;
         key = false;
+        ap.getCampos().clear();
+        JOptionPane.showMessageDialog(this, "El archivo ha sido cerrado exitosamente");
     }//GEN-LAST:event_jb_cerrarArchivoMouseClicked
 
     private void jb_salvararchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salvararchivoMouseClicked
@@ -1002,21 +1003,22 @@ public class MainMenu extends javax.swing.JFrame {
                 /*FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
                 fc.setFileFilter(filtro);*/
                 File archivo3;
-                
+
                 int op = fc.showOpenDialog(this);
                 if (op == JFileChooser.APPROVE_OPTION) {
-                archivo3 = fc.getSelectedFile();
-                //ocupamos algo para leer aqui
-                ap=new AdmArchivo(archivo3.getPath());
-                ap.read();
-                System.out.println("open!");
-                condAbrirArchivos=1;
-                //ap.cargarArchivo();
-                /*for (int i = 0; i < ap.getCampos().size(); i++) {
-                System.out.println(ap.getCampos().get(i));
-                }*/
+                    archivo3 = fc.getSelectedFile();
+                    //ocupamos algo para leer aqui
+                    ap = new AdmArchivo(archivo3.getPath());
+                    ap.read();
+                    System.out.println("open!");
+                    condAbrirArchivos = 1;
+                    //ap.cargarArchivo();
+                    System.out.println(ap.getCampos().size());
+                    for (int i = 0; i < ap.getCampos().size(); i++) {
+                        System.out.println(ap.getCampos().get(i));
+                    }
                 }
-                
+
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1036,12 +1038,15 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getCampos().remove(cb_modificarcampo.getSelectedIndex());
             DefaultComboBoxModel modelo1 = new DefaultComboBoxModel(ap.getCampos().toArray());
             cb_modificarcampo.setModel(modelo1);
+            tf_nombrecampo1.setText("");
+            tipoCampo1.setText("");
             JOptionPane.showMessageDialog(this, "Elemento borrado exitosamente");
         }
     }//GEN-LAST:event_BorrarMouseClicked
 
     public void leerArchivo(String path) throws FileNotFoundException, IOException {
         try {
+            String cadena = "";
             ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
             AdmArchivo clase = (AdmArchivo) file.readObject();
             //ap.getCampos().add(e)
