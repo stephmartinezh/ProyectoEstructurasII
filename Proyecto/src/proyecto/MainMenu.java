@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -21,8 +22,9 @@ public class MainMenu extends javax.swing.JFrame {
     JFileChooser seleccionar = new JFileChooser();
     FileOutputStream salida;
     File archivo2;
-    int condAbrirArchivos = 0;
+    int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
+    ArrayList<Registro> temp = new ArrayList();
 
     public MainMenu() {
         initComponents();
@@ -80,6 +82,21 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         keycampo1 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
+        menuRegistros = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        bt_introducirRegistros = new javax.swing.JButton();
+        bt_modificarRegistros = new javax.swing.JButton();
+        bt_buscarRegistros = new javax.swing.JButton();
+        bt_borrarRegistros = new javax.swing.JButton();
+        bt_listarRegistros = new javax.swing.JButton();
+        bt_salirRegistros = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        insertarRegistros = new javax.swing.JDialog();
+        nombreCampo = new javax.swing.JLabel();
+        nombreRegistro = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        guardarRegistro = new javax.swing.JButton();
+        insertarPrimero = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -516,6 +533,134 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        menuRegistros.setTitle("Menu de Registros");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
+        jLabel17.setText("Menú de Registros");
+
+        bt_introducirRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        bt_introducirRegistros.setText("Introducir Registros");
+        bt_introducirRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_introducirRegistrosMouseClicked(evt);
+            }
+        });
+
+        bt_modificarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        bt_modificarRegistros.setText("Modificar Registros");
+
+        bt_buscarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        bt_buscarRegistros.setText("Buscar Registros");
+
+        bt_borrarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        bt_borrarRegistros.setText("Borrar Registros");
+
+        bt_listarRegistros.setText("Listar Registros");
+
+        bt_salirRegistros.setText("Salir");
+        bt_salirRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_salirRegistrosMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menuRegistrosLayout = new javax.swing.GroupLayout(menuRegistros.getContentPane());
+        menuRegistros.getContentPane().setLayout(menuRegistrosLayout);
+        menuRegistrosLayout.setHorizontalGroup(
+            menuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuRegistrosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(menuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(bt_buscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_modificarRegistros)
+                    .addComponent(bt_introducirRegistros)
+                    .addComponent(bt_borrarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_listarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_salirRegistros)
+                    .addComponent(jLabel17))
+                .addGap(0, 40, Short.MAX_VALUE))
+        );
+        menuRegistrosLayout.setVerticalGroup(
+            menuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuRegistrosLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(bt_introducirRegistros)
+                .addGap(35, 35, 35)
+                .addComponent(bt_modificarRegistros)
+                .addGap(39, 39, 39)
+                .addComponent(bt_buscarRegistros)
+                .addGap(39, 39, 39)
+                .addComponent(bt_borrarRegistros)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(bt_listarRegistros)
+                .addGap(29, 29, 29)
+                .addComponent(bt_salirRegistros)
+                .addContainerGap())
+        );
+
+        jButton7.setText("jButton7");
+
+        insertarRegistros.setTitle("Insertar Registro");
+
+        nombreCampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
+        jLabel18.setText("Insertar Registros");
+
+        guardarRegistro.setText("Guardar");
+        guardarRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarRegistroMouseClicked(evt);
+            }
+        });
+
+        insertarPrimero.setText("Insertar Primero");
+        insertarPrimero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                insertarPrimeroMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout insertarRegistrosLayout = new javax.swing.GroupLayout(insertarRegistros.getContentPane());
+        insertarRegistros.getContentPane().setLayout(insertarRegistrosLayout);
+        insertarRegistrosLayout.setHorizontalGroup(
+            insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel18))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(insertarPrimero)
+                        .addGap(59, 59, 59)
+                        .addComponent(guardarRegistro)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        insertarRegistrosLayout.setVerticalGroup(
+            insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addGap(40, 40, 40)
+                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nombreCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombreRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarRegistro)
+                    .addComponent(insertarPrimero))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
         setBackground(new java.awt.Color(188, 90, 41));
@@ -748,10 +893,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_archivoMouseClicked
 
     private void registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registroMouseClicked
-        //ventanaregistro.pack();
-        //ventanaregistro.setModal(true);
-        //ventanaregistro.setLocationRelativeTo(this);
-        //ventanaregistro.setVisible(true);
+        menuRegistros.pack();
+        menuRegistros.setModal(true);
+        menuRegistros.setLocationRelativeTo(this);
+        menuRegistros.setVisible(true);
+        //introducir();
     }//GEN-LAST:event_registroMouseClicked
 
     private void estandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estandarizacionMouseClicked
@@ -1000,20 +1146,17 @@ public class MainMenu extends javax.swing.JFrame {
         if (condAbrirArchivos == 0) {
             try {
                 JFileChooser fc = new JFileChooser();
-                /*FileFilter filtro = new FileNameExtensionFilter(".Cmb", ".txt");
-                fc.setFileFilter(filtro);*/
                 File archivo3;
 
                 int op = fc.showOpenDialog(this);
                 if (op == JFileChooser.APPROVE_OPTION) {
                     archivo3 = fc.getSelectedFile();
-                    //ocupamos algo para leer aqui
                     ap = new AdmArchivo(archivo3.getPath());
                     ap.read();
-                    System.out.println("open!");
+                    //System.out.println("open!");
                     condAbrirArchivos = 1;
                     //ap.cargarArchivo();
-                    System.out.println(ap.getCampos().size());
+                    //System.out.println(ap.getCampos().size());
                     for (int i = 0; i < ap.getCampos().size(); i++) {
                         System.out.println(ap.getCampos().get(i));
                     }
@@ -1044,20 +1187,68 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BorrarMouseClicked
 
-    public void leerArchivo(String path) throws FileNotFoundException, IOException {
-        try {
-            String cadena = "";
-            ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
-            AdmArchivo clase = (AdmArchivo) file.readObject();
-            //ap.getCampos().add(e)
-            file.close();
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        } catch (IOException ex) {
-            System.out.println(ex);
+    private void bt_introducirRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosMouseClicked
+        insertarRegistros.pack();
+        insertarRegistros.setModal(true);
+        insertarRegistros.setLocationRelativeTo(this);
+        insertarRegistros.setVisible(true);
+        //introducir();
+    }//GEN-LAST:event_bt_introducirRegistrosMouseClicked
+
+    private void bt_salirRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_salirRegistrosMouseClicked
+        menuRegistros.setVisible(false);
+    }//GEN-LAST:event_bt_salirRegistrosMouseClicked
+
+    private void insertarPrimeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertarPrimeroMouseClicked
+        String[] campoNombre = null;
+        String nombreCampos = "";
+        for (int i = 0; i < ap.getCampos().size(); i++) {
+            nombreCampos += ap.getCampos().get(i);
         }
+        String[] camposSeparados = nombreCampos.split("-");
+        for (int i = 0; i < 1; i++) {//camposSeparados.length; i++) {
+            String cadena1 = camposSeparados[i];
+            campoNombre = cadena1.split(",");
+            for (int j = 0; j < campoNombre.length; j++) {
+                nombreCampo.setText(campoNombre[0]);
+                System.out.println(campoNombre[j]);
+            }
+        }
+    }//GEN-LAST:event_insertarPrimeroMouseClicked
+
+    private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
+        cantidadCampos = ap.getCampos().size();
+        if (cont <= cantidadCampos) {
+            String n = nombreRegistro.getText();
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "Registro agregado exitosamente", "Desea agregar otro registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        }
+    }//GEN-LAST:event_guardarRegistroMouseClicked
+
+    public void introducir() {
+
     }
 
+    /*public void introducir() {
+        String[] campoNombre = null;
+        String nombreCampos = "";
+        for (int i = 0; i < ap.getCampos().size(); i++) {
+            nombreCampos += ap.getCampos().get(i);
+        }
+        String[] camposSeparados = nombreCampos.split("-");
+        for (int i = 0; i < camposSeparados.length; i++) {
+            String cadena1 = camposSeparados[i];
+            campoNombre = cadena1.split(",");
+            /*for (int j = 0; j < campoNombre.length; j++) {
+                //nombreCampo.setText(campoNombre[0]);
+                System.out.println(campoNombre[j]);
+            }
+        }
+        for (int i = 0; i < campoNombre.length; i++) {
+            System.out.println(campoNombre[i]);
+        }
+    }*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1097,13 +1288,23 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton GuardarCampo1;
     private javax.swing.JDialog Tabla_ListCamp;
     private javax.swing.JButton archivo;
+    private javax.swing.JButton bt_borrarRegistros;
+    private javax.swing.JButton bt_buscarRegistros;
+    private javax.swing.JButton bt_introducirRegistros;
+    private javax.swing.JButton bt_listarRegistros;
+    private javax.swing.JButton bt_modificarRegistros;
+    private javax.swing.JButton bt_salirRegistros;
     private javax.swing.JButton campos;
     private javax.swing.JComboBox<String> cb_modificarcampo;
     private javax.swing.JButton estandarizacion;
+    private javax.swing.JButton guardarRegistro;
     private javax.swing.JButton indices;
+    private javax.swing.JButton insertarPrimero;
+    private javax.swing.JDialog insertarRegistros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1112,6 +1313,8 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1137,6 +1340,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> keycampo;
     private javax.swing.JComboBox<String> keycampo1;
     private javax.swing.JButton listar_campos;
+    private javax.swing.JDialog menuRegistros;
+    private javax.swing.JLabel nombreCampo;
+    private javax.swing.JTextField nombreRegistro;
     private javax.swing.JButton registro;
     private javax.swing.JButton salir_MenuCampo;
     private javax.swing.JButton salir_modificarCampo;

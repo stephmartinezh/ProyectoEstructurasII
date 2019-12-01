@@ -50,7 +50,7 @@ public class Campo implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + "," + size + "," + tipo + "|";
+        return nombre + "," + size + "," + tipo + "-";
     }
 
 }

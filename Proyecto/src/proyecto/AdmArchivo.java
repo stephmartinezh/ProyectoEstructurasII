@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class AdmArchivo {
 
     private ArrayList<Campo> campos = new ArrayList();
+    private ArrayList<Registro> registros = new ArrayList();
     private File archivo = null;
 
     public AdmArchivo(String path) {
