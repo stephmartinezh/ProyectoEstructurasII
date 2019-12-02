@@ -92,11 +92,29 @@ public class MainMenu extends javax.swing.JFrame {
         bt_salirRegistros = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         insertarRegistros = new javax.swing.JDialog();
-        nombreCampo = new javax.swing.JLabel();
-        nombreRegistro = new javax.swing.JTextField();
+        nombreCampo0 = new javax.swing.JLabel();
+        nombreRegistro0 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         guardarRegistro = new javax.swing.JButton();
-        insertarPrimero = new javax.swing.JButton();
+        salirInsertar = new javax.swing.JButton();
+        nombreCampo1 = new javax.swing.JLabel();
+        nombreRegistro1 = new javax.swing.JTextField();
+        nombreCampo2 = new javax.swing.JLabel();
+        nombreRegistro2 = new javax.swing.JTextField();
+        nombreCampo3 = new javax.swing.JLabel();
+        nombreRegistro3 = new javax.swing.JTextField();
+        nombreCampo4 = new javax.swing.JLabel();
+        nombreRegistro4 = new javax.swing.JTextField();
+        nombreCampo5 = new javax.swing.JLabel();
+        nombreRegistro5 = new javax.swing.JTextField();
+        nombreRegistro6 = new javax.swing.JTextField();
+        nombreCampo6 = new javax.swing.JLabel();
+        nombreCampo7 = new javax.swing.JLabel();
+        nombreRegistro7 = new javax.swing.JTextField();
+        nombreRegistro8 = new javax.swing.JTextField();
+        nombreCampo8 = new javax.swing.JLabel();
+        nombreCampo9 = new javax.swing.JLabel();
+        nombreRegistro9 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -555,8 +573,10 @@ public class MainMenu extends javax.swing.JFrame {
         bt_borrarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_borrarRegistros.setText("Borrar Registros");
 
+        bt_listarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_listarRegistros.setText("Listar Registros");
 
+        bt_salirRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_salirRegistros.setText("Salir");
         bt_salirRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -593,7 +613,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(bt_buscarRegistros)
                 .addGap(39, 39, 39)
                 .addComponent(bt_borrarRegistros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(bt_listarRegistros)
                 .addGap(29, 29, 29)
                 .addComponent(bt_salirRegistros)
@@ -604,8 +624,8 @@ public class MainMenu extends javax.swing.JFrame {
 
         insertarRegistros.setTitle("Insertar Registro");
 
-        nombreCampo.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        nombreCampo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nombreCampo0.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
         jLabel18.setText("Insertar Registros");
@@ -617,12 +637,39 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        insertarPrimero.setText("Insertar Primero");
-        insertarPrimero.addMouseListener(new java.awt.event.MouseAdapter() {
+        salirInsertar.setText("Salir");
+        salirInsertar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insertarPrimeroMouseClicked(evt);
+                salirInsertarMouseClicked(evt);
             }
         });
+
+        nombreCampo1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        nombreCampo9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        nombreCampo9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout insertarRegistrosLayout = new javax.swing.GroupLayout(insertarRegistros.getContentPane());
         insertarRegistros.getContentPane().setLayout(insertarRegistrosLayout);
@@ -632,17 +679,76 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(insertarRegistrosLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(nombreCampo5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(nombreRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreRegistro7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(nombreCampo7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreRegistro8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(nombreCampo8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreRegistro9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(nombreCampo9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addComponent(guardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(salirInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel18))
-                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(insertarPrimero)
-                        .addGap(59, 59, 59)
-                        .addComponent(guardarRegistro)))
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(nombreRegistro0, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(nombreCampo0, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(nombreCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreRegistro2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(nombreCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         insertarRegistrosLayout.setVerticalGroup(
@@ -651,13 +757,53 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel18)
                 .addGap(40, 40, 40)
-                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nombreCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombreRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreCampo0, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreRegistro0, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49)
+                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreCampo5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreCampo6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreRegistro5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreRegistro6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addComponent(nombreCampo9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreRegistro9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarRegistro)
-                    .addComponent(insertarPrimero))
+                    .addComponent(salirInsertar))
                 .addContainerGap())
         );
 
@@ -950,7 +1096,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_nombrecampoActionPerformed
 
     private void GuardarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarCampoMouseClicked
-        if (cantidadCampos <= 15) {
+        if (cantidadCampos <= 10) {
             int tamanoCampo = 0;
             boolean llave = false;
             String tipo = "";
@@ -1153,18 +1299,14 @@ public class MainMenu extends javax.swing.JFrame {
                     archivo3 = fc.getSelectedFile();
                     ap = new AdmArchivo(archivo3.getPath());
                     ap.read();
-                    //System.out.println("open!");
                     condAbrirArchivos = 1;
                     //ap.cargarArchivo();
-                    //System.out.println(ap.getCampos().size());
-                    for (int i = 0; i < ap.getCampos().size(); i++) {
-                        System.out.println(ap.getCampos().get(i));
-                    }
                 }
 
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+            introducir();
         } else {
             JOptionPane.showMessageDialog(this, "No se puede abrir un archivo cuando ya hay uno abierto");
         }
@@ -1192,63 +1334,132 @@ public class MainMenu extends javax.swing.JFrame {
         insertarRegistros.setModal(true);
         insertarRegistros.setLocationRelativeTo(this);
         insertarRegistros.setVisible(true);
-        //introducir();
     }//GEN-LAST:event_bt_introducirRegistrosMouseClicked
 
     private void bt_salirRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_salirRegistrosMouseClicked
         menuRegistros.setVisible(false);
     }//GEN-LAST:event_bt_salirRegistrosMouseClicked
 
-    private void insertarPrimeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertarPrimeroMouseClicked
-        String[] campoNombre = null;
-        String nombreCampos = "";
-        for (int i = 0; i < ap.getCampos().size(); i++) {
-            nombreCampos += ap.getCampos().get(i);
-        }
-        String[] camposSeparados = nombreCampos.split("-");
-        for (int i = 0; i < 1; i++) {//camposSeparados.length; i++) {
-            String cadena1 = camposSeparados[i];
-            campoNombre = cadena1.split(",");
-            for (int j = 0; j < campoNombre.length; j++) {
-                nombreCampo.setText(campoNombre[0]);
-                System.out.println(campoNombre[j]);
-            }
-        }
-    }//GEN-LAST:event_insertarPrimeroMouseClicked
+    private void salirInsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirInsertarMouseClicked
+        insertarRegistros.setVisible(false);
+    }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-        cantidadCampos = ap.getCampos().size();
-        if (cont <= cantidadCampos) {
-            String n = nombreRegistro.getText();
-        } else {
-            int opcion = JOptionPane.showConfirmDialog(null, "Registro agregado exitosamente", "Desea agregar otro registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+        String registroCompleto = "";
+        if (!"".equals(nombreRegistro0.getText())) {
+            registroCompleto += nombreRegistro0.getText();
+            registroCompleto += ",";
         }
+        if (!"".equals(nombreRegistro1.getText())) {
+            registroCompleto += nombreRegistro1.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro2.getText())) {
+            registroCompleto += nombreRegistro2.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro3.getText())) {
+            registroCompleto += nombreRegistro3.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro4.getText())) {
+            registroCompleto += nombreRegistro4.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro5.getText())) {
+            registroCompleto += nombreRegistro5.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro6.getText())) {
+            registroCompleto += nombreRegistro6.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro7.getText())) {
+            registroCompleto += nombreRegistro7.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro8.getText())) {
+            registroCompleto += nombreRegistro8.getText();
+            registroCompleto += ",";
+        }
+        if (!"".equals(nombreRegistro9.getText())) {
+            registroCompleto += nombreRegistro9.getText();
+            registroCompleto += ",";
+        }
+        ap.getRegistros().add(new Registro(registroCompleto));
+        nombreRegistro0.setText("");
+        nombreRegistro1.setText("");
+        nombreRegistro2.setText("");
+        nombreRegistro3.setText("");
+        nombreRegistro4.setText("");
+        nombreRegistro5.setText("");
+        nombreRegistro6.setText("");
+        nombreRegistro7.setText("");
+        nombreRegistro8.setText("");
+        nombreRegistro9.setText("");
+        JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
     }//GEN-LAST:event_guardarRegistroMouseClicked
 
     public void introducir() {
-
-    }
-
-    /*public void introducir() {
+        ArrayList<String> camposFinales = new ArrayList();
         String[] campoNombre = null;
-        String nombreCampos = "";
+        String nombreCampos = "", cadena1 = "";
         for (int i = 0; i < ap.getCampos().size(); i++) {
             nombreCampos += ap.getCampos().get(i);
         }
         String[] camposSeparados = nombreCampos.split("-");
         for (int i = 0; i < camposSeparados.length; i++) {
-            String cadena1 = camposSeparados[i];
-            campoNombre = cadena1.split(",");
-            /*for (int j = 0; j < campoNombre.length; j++) {
-                //nombreCampo.setText(campoNombre[0]);
-                System.out.println(campoNombre[j]);
+            cadena1 += ",";
+            cadena1 += camposSeparados[i];
+        }
+        campoNombre = cadena1.split(",");
+        ArrayList<String> campoNombre2 = new ArrayList();
+        for (int i = 1; i < campoNombre.length; i++) {
+            campoNombre2.add(campoNombre[i]);
+        }
+        for (int i = 0; i < campoNombre2.size(); i++) {
+            if (i % 3 == 0) {
+                camposFinales.add(campoNombre2.get(i));
             }
         }
-        for (int i = 0; i < campoNombre.length; i++) {
-            System.out.println(campoNombre[i]);
+        for (int i = 0; i < camposFinales.size(); i++) {
+            switch (i) {
+                case 0:
+                    nombreCampo0.setText(camposFinales.get(i));
+                    break;
+                case 1:
+                    nombreCampo1.setText(camposFinales.get(i));
+                    break;
+                case 2:
+                    nombreCampo2.setText(camposFinales.get(i));
+                    break;
+                case 3:
+                    nombreCampo3.setText(camposFinales.get(i));
+                    break;
+                case 4:
+                    nombreCampo4.setText(camposFinales.get(i));
+                    break;
+                case 5:
+                    nombreCampo5.setText(camposFinales.get(i));
+                    break;
+                case 6:
+                    nombreCampo6.setText(camposFinales.get(i));
+                    break;
+                case 7:
+                    nombreCampo7.setText(camposFinales.get(i));
+                    break;
+                case 8:
+                    nombreCampo8.setText(camposFinales.get(i));
+                    break;
+                case 9:
+                    nombreCampo9.setText(camposFinales.get(i));
+                    break;
+                default:
+                    break;
+            }
         }
-    }*/
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1299,7 +1510,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton estandarizacion;
     private javax.swing.JButton guardarRegistro;
     private javax.swing.JButton indices;
-    private javax.swing.JButton insertarPrimero;
     private javax.swing.JDialog insertarRegistros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -1341,9 +1551,28 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> keycampo1;
     private javax.swing.JButton listar_campos;
     private javax.swing.JDialog menuRegistros;
-    private javax.swing.JLabel nombreCampo;
-    private javax.swing.JTextField nombreRegistro;
+    private javax.swing.JLabel nombreCampo0;
+    private javax.swing.JLabel nombreCampo1;
+    private javax.swing.JLabel nombreCampo2;
+    private javax.swing.JLabel nombreCampo3;
+    private javax.swing.JLabel nombreCampo4;
+    private javax.swing.JLabel nombreCampo5;
+    private javax.swing.JLabel nombreCampo6;
+    private javax.swing.JLabel nombreCampo7;
+    private javax.swing.JLabel nombreCampo8;
+    private javax.swing.JLabel nombreCampo9;
+    private javax.swing.JTextField nombreRegistro0;
+    private javax.swing.JTextField nombreRegistro1;
+    private javax.swing.JTextField nombreRegistro2;
+    private javax.swing.JTextField nombreRegistro3;
+    private javax.swing.JTextField nombreRegistro4;
+    private javax.swing.JTextField nombreRegistro5;
+    private javax.swing.JTextField nombreRegistro6;
+    private javax.swing.JTextField nombreRegistro7;
+    private javax.swing.JTextField nombreRegistro8;
+    private javax.swing.JTextField nombreRegistro9;
     private javax.swing.JButton registro;
+    private javax.swing.JButton salirInsertar;
     private javax.swing.JButton salir_MenuCampo;
     private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;

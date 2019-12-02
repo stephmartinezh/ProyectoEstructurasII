@@ -38,6 +38,15 @@ public class AdmArchivo {
     public void setCampo(Campo a) {
         campos.add(a);
     }
+    
+    public ArrayList<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(ArrayList<Registro> registros) {
+        this.registros = registros;
+    }
+
 
     public void write() {
         try {

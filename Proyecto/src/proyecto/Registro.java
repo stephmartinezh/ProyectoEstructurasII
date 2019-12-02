@@ -2,17 +2,17 @@ package proyecto;
 
 public class Registro {
 
-    private Object campoLleno;
+    private String campoLleno;
 
-    public Registro(Object campoLleno) {
+    public Registro(String campoLleno) {
         this.campoLleno = campoLleno;
     }
 
-    public Object getCampoLleno() {
+    public String getCampoLleno() {
         return campoLleno;
     }
 
-    public void setCampoLleno(Object campoLleno) {
+    public void setCampoLleno(String campoLleno) {
         this.campoLleno = campoLleno;
     }
 
