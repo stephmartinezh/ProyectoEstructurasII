@@ -567,9 +567,24 @@ public class MainMenu extends javax.swing.JFrame {
 
         bt_modificarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_modificarRegistros.setText("Modificar Registros");
+        bt_modificarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_modificarRegistrosMouseClicked(evt);
+            }
+        });
 
         bt_buscarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_buscarRegistros.setText("Buscar Registros");
+        bt_buscarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_buscarRegistrosMouseClicked(evt);
+            }
+        });
+        bt_buscarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_buscarRegistrosActionPerformed(evt);
+            }
+        });
 
         bt_borrarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_borrarRegistros.setText("Borrar Registros");
@@ -1409,6 +1424,23 @@ public class MainMenu extends javax.swing.JFrame {
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_registroActionPerformed
+
+    private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
+        int llave=Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
+        insertarRegistros.pack();
+        insertarRegistros.setModal(true);
+        insertarRegistros.setLocationRelativeTo(this);
+        insertarRegistros.setVisible(true);
+         
+    }//GEN-LAST:event_bt_buscarRegistrosMouseClicked
+
+    private void bt_buscarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosActionPerformed
+        
+    }//GEN-LAST:event_bt_buscarRegistrosActionPerformed
+
+    private void bt_modificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarRegistrosMouseClicked
+        
+    }//GEN-LAST:event_bt_modificarRegistrosMouseClicked
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();

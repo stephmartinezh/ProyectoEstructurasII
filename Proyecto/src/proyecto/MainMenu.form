@@ -711,6 +711,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar Registros"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_modificarRegistrosMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_buscarRegistros">
           <Properties>
@@ -719,6 +722,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar Registros"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_buscarRegistrosMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_buscarRegistrosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_borrarRegistros">
           <Properties>
