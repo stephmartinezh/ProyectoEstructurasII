@@ -25,6 +25,7 @@ public class MainMenu extends javax.swing.JFrame {
     int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
     ArrayList<Registro> temp = new ArrayList();
+    LinkedList availist= new LinkedList();
 
     public MainMenu() {
         initComponents();
@@ -853,6 +854,11 @@ public class MainMenu extends javax.swing.JFrame {
                 registroMouseClicked(evt);
             }
         });
+        registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
@@ -1399,6 +1405,10 @@ public class MainMenu extends javax.swing.JFrame {
         nombreRegistro9.setText("");
         JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
     }//GEN-LAST:event_guardarRegistroMouseClicked
+
+    private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registroActionPerformed
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
