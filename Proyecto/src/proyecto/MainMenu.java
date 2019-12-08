@@ -1,5 +1,6 @@
 package proyecto;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,11 +27,35 @@ public class MainMenu extends javax.swing.JFrame {
     boolean key = false;
     ArrayList<Registro> temp = new ArrayList();
     LinkedList availist= new LinkedList();
-
+    
+    //objeto globlal para restriccion jtextfield en insertar registros
+    RestrictedTextField caja_registro0;
+    RestrictedTextField caja_registro1;
+    RestrictedTextField caja_registro2;
+    RestrictedTextField caja_registro3;
+    RestrictedTextField caja_registro4;
+    RestrictedTextField caja_registro5;
+    RestrictedTextField caja_registro6;
+    RestrictedTextField caja_registro7;
+    RestrictedTextField caja_registro8;
+    RestrictedTextField caja_registro9;
+    
     public MainMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
+        //instancias en el constructor
+        caja_registro0=new RestrictedTextField(nombreRegistro0);
+        caja_registro1=new RestrictedTextField(nombreRegistro1);
+        caja_registro2=new RestrictedTextField(nombreRegistro2);
+        caja_registro3=new RestrictedTextField(nombreRegistro3);
+        caja_registro4=new RestrictedTextField(nombreRegistro4);
+        caja_registro5=new RestrictedTextField(nombreRegistro5);
+        caja_registro6=new RestrictedTextField(nombreRegistro6);
+        caja_registro7=new RestrictedTextField(nombreRegistro7);
+        caja_registro8=new RestrictedTextField(nombreRegistro8);
+        caja_registro9=new RestrictedTextField(nombreRegistro9);
+        
     }
 
     /**
@@ -562,6 +587,11 @@ public class MainMenu extends javax.swing.JFrame {
         bt_introducirRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_introducirRegistrosMouseClicked(evt);
+            }
+        });
+        bt_introducirRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_introducirRegistrosActionPerformed(evt);
             }
         });
 
@@ -1435,6 +1465,236 @@ public class MainMenu extends javax.swing.JFrame {
     private void bt_modificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarRegistrosMouseClicked
         
     }//GEN-LAST:event_bt_modificarRegistrosMouseClicked
+
+    private void bt_introducirRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosActionPerformed
+        // TODO add your handling code here:
+        
+        //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
+        
+        //caja de registro 0
+        switch (ap.getCampos().get(0).tipo) {
+            case "String":
+                caja_registro0.setOnlyText(true);
+                caja_registro0.setLimit(ap.getCampos().get(0).size);
+                break;
+            case "Integer":
+                caja_registro0.setOnlyNums(true);
+                caja_registro0.setLimit(ap.getCampos().get(0).size);
+                break;
+
+            case "Double":
+
+                caja_registro0.setLimit(ap.getCampos().get(0).size);
+                break;
+            case "Char":
+
+                caja_registro0.setLimit(ap.getCampos().get(0).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 1
+        switch (ap.getCampos().get(1).tipo) {
+            case "String":
+                caja_registro1.setOnlyText(true);
+                caja_registro1.setLimit(ap.getCampos().get(1).size);
+                break;
+            case "Integer":
+                caja_registro1.setOnlyNums(true);
+                caja_registro1.setLimit(ap.getCampos().get(1).size);
+                break;
+
+            case "Double":
+
+                caja_registro1.setLimit(ap.getCampos().get(1).size);
+                break;
+            case "Char":
+
+                caja_registro1.setLimit(ap.getCampos().get(1).size);
+                break;
+            default:
+                break;
+        }
+
+        //caja de registro 2
+        switch (ap.getCampos().get(2).tipo) {
+            case "String":
+                caja_registro2.setOnlyText(true);
+                caja_registro2.setLimit(ap.getCampos().get(2).size);
+                break;
+            case "Integer":
+                caja_registro2.setOnlyNums(true);
+                caja_registro2.setLimit(ap.getCampos().get(2).size);
+                break;
+
+            case "Double":
+
+                caja_registro2.setLimit(ap.getCampos().get(2).size);
+                break;
+            case "Char":
+
+                caja_registro2.setLimit(ap.getCampos().get(2).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 3
+        switch (ap.getCampos().get(3).tipo) {
+            case "String":
+                caja_registro3.setOnlyText(true);
+                caja_registro3.setLimit(ap.getCampos().get(3).size);
+                break;
+            case "Integer":
+                caja_registro3.setOnlyNums(true);
+                caja_registro3.setLimit(ap.getCampos().get(3).size);
+                break;
+
+            case "Double":
+
+                caja_registro3.setLimit(ap.getCampos().get(3).size);
+                break;
+            case "Char":
+
+                caja_registro3.setLimit(ap.getCampos().get(3).size);
+                break;
+            default:
+                break;
+        }
+
+        //caja de registro 4
+        switch (ap.getCampos().get(4).tipo) {
+            case "String":
+                caja_registro4.setOnlyText(true);
+                caja_registro4.setLimit(ap.getCampos().get(4).size);
+                break;
+            case "Integer":
+                caja_registro4.setOnlyNums(true);
+                caja_registro4.setLimit(ap.getCampos().get(4).size);
+                break;
+
+            case "Double":
+
+                caja_registro4.setLimit(ap.getCampos().get(4).size);
+                break;
+            case "Char":
+
+                caja_registro4.setLimit(ap.getCampos().get(4).size);
+                break;
+            default:
+                break;
+        }
+
+        //caja de registro 5
+        switch (ap.getCampos().get(5).tipo) {
+            case "String":
+                caja_registro5.setOnlyText(true);
+                caja_registro5.setLimit(ap.getCampos().get(5).size);
+                break;
+            case "Integer":
+                caja_registro5.setOnlyNums(true);
+                caja_registro5.setLimit(ap.getCampos().get(5).size);
+                break;
+
+            case "Double":
+
+                caja_registro5.setLimit(ap.getCampos().get(5).size);
+                break;
+            case "Char":
+
+                caja_registro5.setLimit(ap.getCampos().get(5).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 6
+        switch (ap.getCampos().get(6).tipo) {
+            case "String":
+                caja_registro6.setOnlyText(true);
+                caja_registro6.setLimit(ap.getCampos().get(6).size);
+                break;
+            case "Integer":
+                caja_registro6.setOnlyNums(true);
+                caja_registro6.setLimit(ap.getCampos().get(6).size);
+                break;
+
+            case "Double":
+
+                caja_registro6.setLimit(ap.getCampos().get(6).size);
+                break;
+            case "Char":
+
+                caja_registro6.setLimit(ap.getCampos().get(6).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 7
+        switch (ap.getCampos().get(7).tipo) {
+            case "String":
+                caja_registro7.setOnlyText(true);
+                caja_registro7.setLimit(ap.getCampos().get(7).size);
+                break;
+            case "Integer":
+                caja_registro7.setOnlyNums(true);
+                caja_registro7.setLimit(ap.getCampos().get(7).size);
+                break;
+
+            case "Double":
+
+                caja_registro7.setLimit(ap.getCampos().get(7).size);
+                break;
+            case "Char":
+
+                caja_registro7.setLimit(ap.getCampos().get(7).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 8
+        switch (ap.getCampos().get(8).tipo) {
+            case "String":
+                caja_registro8.setOnlyText(true);
+                caja_registro8.setLimit(ap.getCampos().get(8).size);
+                break;
+            case "Integer":
+                caja_registro8.setOnlyNums(true);
+                caja_registro8.setLimit(ap.getCampos().get(8).size);
+                break;
+
+            case "Double":
+
+                caja_registro8.setLimit(ap.getCampos().get(8).size);
+                break;
+            case "Char":
+
+                caja_registro8.setLimit(ap.getCampos().get(8).size);
+                break;
+            default:
+                break;
+        }
+        //caja de registro 9
+        switch (ap.getCampos().get(9).tipo) {
+            case "String":
+                caja_registro9.setOnlyText(true);
+                caja_registro9.setLimit(ap.getCampos().get(9).size);
+                break;
+            case "Integer":
+                caja_registro9.setOnlyNums(true);
+                caja_registro9.setLimit(ap.getCampos().get(9).size);
+                break;
+
+            case "Double":
+
+                caja_registro9.setLimit(ap.getCampos().get(9).size);
+                break;
+            case "Char":
+
+                caja_registro9.setLimit(ap.getCampos().get(9).size);
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_bt_introducirRegistrosActionPerformed
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
