@@ -1366,48 +1366,38 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-        String registroCompleto = "";
+        Registro registro= new Registro();
         if (!"".equals(nombreRegistro0.getText())) {
-            registroCompleto += nombreRegistro0.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro0.getText());
         }
         if (!"".equals(nombreRegistro1.getText())) {
-            registroCompleto += nombreRegistro1.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro1.getText());
         }
         if (!"".equals(nombreRegistro2.getText())) {
-            registroCompleto += nombreRegistro2.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro2.getText());
         }
         if (!"".equals(nombreRegistro3.getText())) {
-            registroCompleto += nombreRegistro3.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro3.getText());
         }
         if (!"".equals(nombreRegistro4.getText())) {
-            registroCompleto += nombreRegistro4.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro4.getText());
         }
         if (!"".equals(nombreRegistro5.getText())) {
-            registroCompleto += nombreRegistro5.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro5.getText());
         }
         if (!"".equals(nombreRegistro6.getText())) {
-            registroCompleto += nombreRegistro6.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro6.getText());
         }
         if (!"".equals(nombreRegistro7.getText())) {
-            registroCompleto += nombreRegistro7.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro7.getText());
         }
         if (!"".equals(nombreRegistro8.getText())) {
-            registroCompleto += nombreRegistro8.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro8.getText());
         }
         if (!"".equals(nombreRegistro9.getText())) {
-            registroCompleto += nombreRegistro9.getText();
-            registroCompleto += ",";
+            registro.getCampos().add(nombreRegistro9.getText());
         }
-        ap.getRegistros().add(new Registro(registroCompleto));
+        ap.getRegistros().add(registro);
         nombreRegistro0.setText("");
         nombreRegistro1.setText("");
         nombreRegistro2.setText("");
@@ -1435,7 +1425,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_buscarRegistrosMouseClicked
 
     private void bt_buscarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosActionPerformed
-        
+        int llave=Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
+        insertarRegistros.pack();
+        insertarRegistros.setModal(true);
+        insertarRegistros.setLocationRelativeTo(this);
+        insertarRegistros.setVisible(true);
     }//GEN-LAST:event_bt_buscarRegistrosActionPerformed
 
     private void bt_modificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarRegistrosMouseClicked
