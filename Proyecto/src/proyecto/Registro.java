@@ -1,8 +1,9 @@
 package proyecto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Registro {
+public class Registro implements Serializable{
     int RRN;//posicion en el archivo
     ArrayList<String> data=new ArrayList<>();//contenido del registro
 
