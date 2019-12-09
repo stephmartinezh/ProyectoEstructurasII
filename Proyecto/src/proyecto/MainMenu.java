@@ -1501,6 +1501,16 @@ public class MainMenu extends javax.swing.JFrame {
     private void bt_introducirRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosActionPerformed
         // TODO add your handling code here:
         
+        try {
+            
+            
+            //obtenermos el conteo de registros
+            ap.read_contadador_registro_from_file();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
         
         //caja de registro 0
