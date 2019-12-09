@@ -1396,6 +1396,36 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
+        
+        
+        System.out.println(ap.getContador_de_registros());
+        
+        ap.setRegistro(new Registro(ap.getContador_de_registros()));
+        ap.getRegistro().getData().add(nombreRegistro0.getText());
+        ap.getRegistro().getData().add(nombreRegistro1.getText());
+        ap.getRegistro().getData().add(nombreRegistro2.getText());
+        ap.getRegistro().getData().add(nombreRegistro3.getText());
+        ap.getRegistro().getData().add(nombreRegistro4.getText());
+        ap.getRegistro().getData().add(nombreRegistro5.getText());
+        ap.getRegistro().getData().add(nombreRegistro6.getText());
+        ap.getRegistro().getData().add(nombreRegistro7.getText());
+        ap.getRegistro().getData().add(nombreRegistro8.getText());
+        ap.getRegistro().getData().add(nombreRegistro9.getText());
+        
+        ap.setContador_de_registros(ap.getContador_de_registros()+1);
+        
+        
+        //guardar registro en archivo de registros
+        ap.write_obj_registro();
+        
+        //se actualiza el contador de registros en la metadata
+        ap.actualizar();
+        
+        JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
+        /*
+        
+        
+        
         Registro registro= new Registro();
         if (!"".equals(nombreRegistro0.getText())) {
             registro.getCampos().add(nombreRegistro0.getText());
@@ -1427,6 +1457,7 @@ public class MainMenu extends javax.swing.JFrame {
         if (!"".equals(nombreRegistro9.getText())) {
             registro.getCampos().add(nombreRegistro9.getText());
         }
+        
         ap.getRegistros().add(registro);
         nombreRegistro0.setText("");
         nombreRegistro1.setText("");
@@ -1438,7 +1469,8 @@ public class MainMenu extends javax.swing.JFrame {
         nombreRegistro7.setText("");
         nombreRegistro8.setText("");
         nombreRegistro9.setText("");
-        JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
+        */
+        
     }//GEN-LAST:event_guardarRegistroMouseClicked
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
