@@ -621,6 +621,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         bt_listarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_listarRegistros.setText("Listar Registros");
+        bt_listarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_listarRegistrosActionPerformed(evt);
+            }
+        });
 
         bt_salirRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_salirRegistros.setText("Salir");
@@ -1737,6 +1742,26 @@ public class MainMenu extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_bt_introducirRegistrosActionPerformed
+
+    private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
+        // TODO add your handling code here:
+        try {
+            //tomar el tercer registro del archivo
+            ap.read_registro_in_bytes(2*177, 177);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ap.write_registro_innewfile();
+        
+        try {
+            ap.read_obj_registro();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println("rrn->"+ap.getRegistro().RRN);
+        System.out.println(ap.getRegistro().getData());
+    }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
