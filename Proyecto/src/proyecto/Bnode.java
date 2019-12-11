@@ -11,7 +11,7 @@ package proyecto;
  */
 public class Bnode {
     
-    protected int keys[];//keys 
+    protected KRRN keys[];//keys 
     protected int t;//minimun range for keys
     protected Bnode childs[];//childs of x
     protected int n;//current number or keys
@@ -20,7 +20,7 @@ public class Bnode {
     public Bnode(int t, boolean leaf) {
         this.t = t;
         this.leaf = leaf;
-        keys=new int[2*t-1];
+        keys=new KRRN[2*t-1];
         childs=new Bnode[2*t];
         n=0;
         
