@@ -5,11 +5,14 @@
  */
 package proyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author edas
  */
-public class Btree {
+
+public class Btree implements Serializable{
     protected Bnode root;
     protected int t;
 
@@ -18,11 +21,12 @@ public class Btree {
         this.t = t;
     }
     
-    public void insert(int key){
+    public void insert(int key,int RRN){
         if (root==null) {
             root=new Bnode(t,true);
             //root.getKeys()[root.getN()]=key;
-            root.keys[0]=key;
+            root.keys[0].key=key;
+            root.keys[0].RRN=RRN;
             //root.setN(root.getN()+1);//aumenta el numero de llaves
             root.n+=1;//aumenta el numero de llaves
         }
@@ -35,31 +39,32 @@ public class Btree {
             //split
             split(s,0,r);
             int i=0;
-            if(s.keys[0]<key){
+            if(s.keys[0].key<key){
                 i++;
             }
             //from new root we insert in a aproppiate child
-            insertNonFull(s.childs[i], key);
+            insertNonFull(s.childs[i], key,RRN);
         }
         else{
             //insert in root node
-            insertNonFull(root, key);
+            insertNonFull(root, key,RRN);
         }
     }
     
-    public void insertNonFull(Bnode x,int key){
+    public void insertNonFull(Bnode x,int key,int RRN){
         int i=x.n-1;//array last element
         if (x.leaf==true) {
-            while (i>=0&&key<x.keys[i]) { //se corren los elementos mayores a la derecha
+            while (i>=0&&key<x.keys[i].key) { //se corren los elementos mayores a la derecha
                 x.keys[i+1]=x.keys[i];
                 i--;
             }
-            x.keys[i+1]=key;//se inserta el elemento en la posicion correcta
+            x.keys[i+1].key=key;//se inserta el elemento en la posicion correcta
+            x.keys[i+1].RRN=RRN;
             x.n=x.n+1;//aumenta el numero de llaves de x
         }else{//not leaf
             
             //encontrar hijo en el cual insertar el elemento
-            while (i>=0&&key<x.keys[i]) {
+            while (i>=0&&key<x.keys[i].key) {
                 i--;
             }
             i=i+1;
@@ -71,12 +76,12 @@ public class Btree {
                 split(x, i, x.childs[i]);
                 
                 //find child to insert middle key
-                if (key>x.keys[i]) {
+                if (key>x.keys[i].key) {
                     i++;
                 }
             }
             
-            insertNonFull(x.childs[i], key);
+            insertNonFull(x.childs[i], key,RRN);
             
         }
         
@@ -122,6 +127,27 @@ public class Btree {
         x.n+=1;
     }
     
+    //funcion buscar llave(retorna el nodo)
+    Bnode search(Bnode x,int k){ 
+        // primer llave mayor o igual a k
+        int i = 0; 
+        while (i < x.n && k > x.keys[i].key){
+
+            i++; 
+        } 
+        // una de las llaves en el arbol es igual a k 
+        if (x.keys[i].key == k){
+            return x; 
+
+        } 
+        // no esta en el arbol
+        if (x.leaf == true) {
+
+            return null; 
+        }
+        // ir al subnodo adecuado
+        return search(x.childs[i],k);
     
+    }
     
 }
