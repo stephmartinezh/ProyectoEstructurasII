@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
 
 public class MainMenu extends javax.swing.JFrame {
-
+    Btree b=new Btree(5);
     AdmArchivo ap;
     String nombreArchivo;
     int cantidadCampos = 0;
@@ -1409,6 +1409,9 @@ public class MainMenu extends javax.swing.JFrame {
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
         
         
+        //ingresar al arbol
+        
+        
         System.out.println(ap.getContador_de_registros());
         
         ap.setRegistro(new Registro(ap.getContador_de_registros()));
@@ -1754,7 +1757,7 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             //tomar el tercer registro del archivo
-            ap.read_registro_in_bytes(2*177, 177);
+            ap.read_registro_in_bytes(5*177, 177);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -221,7 +221,7 @@ public class AdmArchivo {
             leer.close();
 
         } catch (IOException e) {
-
+            
         }
     }
 
