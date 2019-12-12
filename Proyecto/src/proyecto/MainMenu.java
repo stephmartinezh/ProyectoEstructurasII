@@ -14,6 +14,28 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
+import javax.swing.text.html.parser.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableWorkbook;
+import jxl.write.WritableSheet;
+import jxl.write.WriteException;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Text;
 
 public class MainMenu extends javax.swing.JFrame {
     
@@ -26,9 +48,9 @@ public class MainMenu extends javax.swing.JFrame {
     File archivo2;
     int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
-    ArrayList<Registro> temp = new ArrayList();
-    LinkedList availist = new LinkedList();
-
+    ArrayList<Registro> registros = new ArrayList();
+    LinkedList availist= new LinkedList();
+    
     //objeto globlal para restriccion jtextfield en insertar registros
     RestrictedTextField caja_registro0;
     RestrictedTextField caja_registro1;
@@ -1114,10 +1136,16 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_registroMouseClicked
 
     private void estandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estandarizacionMouseClicked
-        //ventanaestand.pack();
-        //ventanaestand.setModal(true);
-        //ventanaestand.setLocationRelativeTo(this);
-        //ventanaestand.setVisible(true);
+        try {
+            estandarizarxml();
+            estandarizarexcel();
+            //ventanaestand.pack();
+            //ventanaestand.setModal(true);
+            //ventanaestand.setLocationRelativeTo(this);
+            //ventanaestand.setVisible(true);
+        } catch (ParserConfigurationException | TransformerException | IOException | WriteException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_estandarizacionMouseClicked
 
     private void indicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_indicesMouseClicked
@@ -1415,9 +1443,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
 
+
         //ingresar al arbol
         
-        
+
+        if (!availist.vacia()) {
+            ap.setRegistro(new Registro(availist.elementoPosicion(1)));
+            availist.borrarElemento(1);
+        }else{
+
 
 
 
@@ -1442,7 +1476,14 @@ public class MainMenu extends javax.swing.JFrame {
         ap.getRegistro().getData().add(nombreRegistro8.getText());
         ap.getRegistro().getData().add(nombreRegistro9.getText());
 
+
         ap.setContador_de_registros(ap.getContador_de_registros() + 1);
+
+
+        
+        ap.setContador_de_registros(ap.getContador_de_registros()+1);
+        }
+        
 
         //guardar registro en archivo de registros
         ap.write_obj_registro();
@@ -2058,6 +2099,61 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
     }
+        public  void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException{
+                DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder=factory.newDocumentBuilder();
+                DOMImplementation implementation= builder.getDOMImplementation();
+
+                Document documento= implementation.createDocument(null, "Archivo", null);
+                documento.setXmlVersion("1.0");
+                for (int i = 0; i < registros.size(); i++) {
+                org.w3c.dom.Element register = documento.createElement("Registro"+i);     
+            
+               
+                    for (int j = 0; j < ap.getCampos().size(); j++) {
+                    org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
+                    Text texto=documento.createTextNode(registros.get(i).getData().get(j)); 
+                    campo.appendChild(texto);
+                    register.appendChild(campo);
+                    }
+                     documento.getDocumentElement().appendChild(register);
+                }
+
+
+
+
+            //}
+               
+
+                Source source= new DOMSource(documento);
+                Result result= new StreamResult(new File ("Archivo.xml"));
+                Transformer transformer= TransformerFactory.newInstance().newTransformer();
+                transformer.transform(source, result);
+        }
+        
+        public void estandarizarexcel() throws IOException, WriteException{
+            WorkbookSettings conf= new WorkbookSettings();
+            conf.setEncoding("ISO-8859-1");
+            WritableWorkbook workbook = Workbook.createWorkbook(new File("\\Users\\Ale Rodriguez\\Documents\\NetBeansProjects\\ProyectoEstructurasII\\Proyecto\\Registros.xls"));
+            WritableSheet sheet = workbook.createSheet("Registro", 0);
+            WritableFont fuente = new WritableFont(WritableFont.TIMES,12, WritableFont.NO_BOLD);
+            WritableFont f2 = new WritableFont(WritableFont.TIMES,14, WritableFont.BOLD);
+            WritableCellFormat cformat = new WritableCellFormat(fuente);
+            WritableCellFormat cformat2 = new WritableCellFormat(f2);
+            for (int i = 0; i < 1; i++) {
+                for (int j = 0; j < ap.getCampos().size(); j++) {
+                   sheet.addCell(new jxl.write.Label(i, j, ap.getCampos().get(j).getNombre(),cformat2)); 
+                }
+            }
+            for (int i = 1; i < registros.size(); i++) {
+                for (int j = 0; j < ap.getCampos().size(); j++) {
+                   sheet.addCell(new jxl.write.Label(i, j,ap.getRegistro().getData().get(j),cformat)); 
+                }
+            }
+            
+            workbook.write();
+            workbook.close();
+        }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
