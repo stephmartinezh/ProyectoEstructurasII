@@ -2034,13 +2034,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_guardar_arbol
 
     public void introducir() {
-        System.out.println(ap.getCampos().size());
-        for (int i = 0; i <= ap.getCampos().size(); i++) {
-            System.out.println(i);
-            System.out.println(ap.getCampos().get(i));
-        }
-        ap.getCampos().remove(ap.getCampos().size()-1);
-        System.out.println(ap.getCampos().size());
+//        System.out.println(ap.getCampos().size());
+//        for (int i = 0; i <= ap.getCampos().size(); i++) {
+//            System.out.println(i);
+//            System.out.println(ap.getCampos().get(i));
+//        }
+//        //ap.getCampos().remove(ap.getCampos().size()-1);
+//        System.out.println(ap.getCampos().size());
         ArrayList<String> camposFinales = new ArrayList();
         String[] campoNombre = null;
         String nombreCampos = "", cadena1 = "";
