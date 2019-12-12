@@ -38,8 +38,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
 public class MainMenu extends javax.swing.JFrame {
-    
-    
+
     AdmArchivo ap;
     String nombreArchivo;
     int cantidadCampos = 0;
@@ -49,8 +48,8 @@ public class MainMenu extends javax.swing.JFrame {
     int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
     ArrayList<Registro> registros = new ArrayList();
-    LinkedList availist= new LinkedList();
-    
+    LinkedList availist = new LinkedList();
+
     //objeto globlal para restriccion jtextfield en insertar registros
     RestrictedTextField caja_registro0;
     RestrictedTextField caja_registro1;
@@ -1443,47 +1442,34 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
 
-
         //ingresar al arbol
-        
-
         if (!availist.vacia()) {
             ap.setRegistro(new Registro(availist.elementoPosicion(1)));
             availist.borrarElemento(1);
-        }else{
+        } else {
 
+            System.out.println(ap.getContador_de_registros());
 
+            ap.setRegistro(new Registro(ap.getContador_de_registros()));
 
+            //llenarEspacios();
+            ap.getRegistro().getData().add(nombreRegistro0.getText());
+            //ingresar al arbol
+            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
+            ap.getRegistro().getData().add(nombreRegistro1.getText());
+            ap.getRegistro().getData().add(nombreRegistro2.getText());
+            ap.getRegistro().getData().add(nombreRegistro3.getText());
+            ap.getRegistro().getData().add(nombreRegistro4.getText());
+            ap.getRegistro().getData().add(nombreRegistro5.getText());
+            ap.getRegistro().getData().add(nombreRegistro6.getText());
+            ap.getRegistro().getData().add(nombreRegistro7.getText());
+            ap.getRegistro().getData().add(nombreRegistro8.getText());
+            ap.getRegistro().getData().add(nombreRegistro9.getText());
 
-        System.out.println(ap.getContador_de_registros());
+            ap.setContador_de_registros(ap.getContador_de_registros() + 1);
 
-
-        
-
-        ap.setRegistro(new Registro(ap.getContador_de_registros()));
-
-        //llenarEspacios();
-        ap.getRegistro().getData().add(nombreRegistro0.getText());
-        //ingresar al arbol
-        ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)),ap.getContador_de_registros());
-        ap.getRegistro().getData().add(nombreRegistro1.getText());
-        ap.getRegistro().getData().add(nombreRegistro2.getText());
-        ap.getRegistro().getData().add(nombreRegistro3.getText());
-        ap.getRegistro().getData().add(nombreRegistro4.getText());
-        ap.getRegistro().getData().add(nombreRegistro5.getText());
-        ap.getRegistro().getData().add(nombreRegistro6.getText());
-        ap.getRegistro().getData().add(nombreRegistro7.getText());
-        ap.getRegistro().getData().add(nombreRegistro8.getText());
-        ap.getRegistro().getData().add(nombreRegistro9.getText());
-
-
-        ap.setContador_de_registros(ap.getContador_de_registros() + 1);
-
-
-        
-        ap.setContador_de_registros(ap.getContador_de_registros()+1);
+            ap.setContador_de_registros(ap.getContador_de_registros() + 1);
         }
-        
 
         //guardar registro en archivo de registros
         ap.write_obj_registro();
@@ -1491,10 +1477,8 @@ public class MainMenu extends javax.swing.JFrame {
         //se actualiza el contador de registros en la metadata
         ap.actualizar();
 
-
         JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
 
-        
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
 
         /*
@@ -1554,10 +1538,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
 
-        int llave=Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
+        int llave = Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
         //idea de Btree
-
-        
 
         insertarRegistros.pack();
         insertarRegistros.setModal(true);
@@ -1591,7 +1573,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
         //caja de registro 0
-        if (0 <= ap.getCampos().size()) {
+        if (0 < ap.getCampos().size()) {
             switch (ap.getCampos().get(0).tipo) {
                 case "String":
                     caja_registro0.setOnlyText(true);
@@ -1615,7 +1597,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 1
-        if (1 <= ap.getCampos().size()) {
+        if (1 < ap.getCampos().size()) {
             switch (ap.getCampos().get(1).tipo) {
                 case "String":
                     caja_registro1.setOnlyText(true);
@@ -1639,7 +1621,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 2
-        if (2 <= ap.getCampos().size()) {
+        if (2 < ap.getCampos().size()) {
             switch (ap.getCampos().get(2).tipo) {
                 case "String":
                     caja_registro2.setOnlyText(true);
@@ -1663,7 +1645,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 3
-        if (3 <= ap.getCampos().size()) {
+        if (3 < ap.getCampos().size()) {
             switch (ap.getCampos().get(3).tipo) {
                 case "String":
                     caja_registro3.setOnlyText(true);
@@ -1687,7 +1669,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 4
-        if (4 <= ap.getCampos().size()) {
+        if (4 < ap.getCampos().size()) {
             switch (ap.getCampos().get(4).tipo) {
                 case "String":
                     caja_registro4.setOnlyText(true);
@@ -1711,7 +1693,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 5
-        if (5 <= ap.getCampos().size()) {
+        if (5 < ap.getCampos().size()) {
             switch (ap.getCampos().get(5).tipo) {
                 case "String":
                     caja_registro5.setOnlyText(true);
@@ -1735,7 +1717,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 6
-        if (6 <= ap.getCampos().size()) {
+        if (6 < ap.getCampos().size()) {
             switch (ap.getCampos().get(6).tipo) {
                 case "String":
                     caja_registro6.setOnlyText(true);
@@ -1759,7 +1741,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 7
-        if (7 <= ap.getCampos().size()) {
+        if (7 < ap.getCampos().size()) {
             switch (ap.getCampos().get(7).tipo) {
                 case "String":
                     caja_registro7.setOnlyText(true);
@@ -1783,7 +1765,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 8
-        if (8 <= ap.getCampos().size()) {
+        if (8 < ap.getCampos().size()) {
             switch (ap.getCampos().get(8).tipo) {
                 case "String":
                     caja_registro8.setOnlyText(true);
@@ -1807,7 +1789,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         //caja de registro 9
-        if (9 <= ap.getCampos().size()) {
+        if (9 < ap.getCampos().size()) {
             switch (ap.getCampos().get(9).tipo) {
                 case "String":
                     caja_registro9.setOnlyText(true);
@@ -1985,14 +1967,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
         // TODO add your handling code here:
-        /*
+        int llave = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
         try {
             //tomar el tercer registro del archivo
-<<<<<<< HEAD
-            ap.read_registro_in_bytes(5*177, 177);
-=======
-            ap.read_registro_in_bytes(2 * 177, 177);
->>>>>>> f6141a1863744f78b97d320a239ef79a058e1011
+            
+            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave) * 202, 202);
+
+            //System.out.println(ap.getRegistro().data);
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2004,27 +1986,25 @@ public class MainMenu extends javax.swing.JFrame {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println("rrn->" + ap.getRegistro().RRN);
+        
         System.out.println(ap.getRegistro().getData());
-        */
+        if (ap.getArbol().search(ap.getArbol().root,llave)==-1) {
+            System.out.println("not found");
+        }else{
+            JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
+        }
         
-        
-        
-        
-            
-        
-        
-        
+
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
-       
-        if(availist.vacia()){
+
+        if (availist.vacia()) {
             ap.getRegistro().setIndicador('*');
             ap.getRegistro().setRRNSig(ap.getRegistro().getRRN());
-        }else{
+        } else {
             ap.getRegistro().setIndicador('*');
-            ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize()-1));
+            ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize() - 1));
         }
     }//GEN-LAST:event_bt_borrarRegistrosMouseClicked
 
@@ -2034,13 +2014,6 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_guardar_arbol
 
     public void introducir() {
-//        System.out.println(ap.getCampos().size());
-//        for (int i = 0; i <= ap.getCampos().size(); i++) {
-//            System.out.println(i);
-//            System.out.println(ap.getCampos().get(i));
-//        }
-//        //ap.getCampos().remove(ap.getCampos().size()-1);
-//        System.out.println(ap.getCampos().size());
         ArrayList<String> camposFinales = new ArrayList();
         String[] campoNombre = null;
         String nombreCampos = "", cadena1 = "";
@@ -2099,61 +2072,56 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
     }
-        public  void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException{
-                DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder=factory.newDocumentBuilder();
-                DOMImplementation implementation= builder.getDOMImplementation();
 
-                Document documento= implementation.createDocument(null, "Archivo", null);
-                documento.setXmlVersion("1.0");
-                for (int i = 0; i < registros.size(); i++) {
-                org.w3c.dom.Element register = documento.createElement("Registro"+i);     
-            
-               
-                    for (int j = 0; j < ap.getCampos().size(); j++) {
-                    org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
-                    Text texto=documento.createTextNode(registros.get(i).getData().get(j)); 
-                    campo.appendChild(texto);
-                    register.appendChild(campo);
-                    }
-                     documento.getDocumentElement().appendChild(register);
-                }
+    public void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        DOMImplementation implementation = builder.getDOMImplementation();
 
+        Document documento = implementation.createDocument(null, "Archivo", null);
+        documento.setXmlVersion("1.0");
+        for (int i = 0; i < registros.size(); i++) {
+            org.w3c.dom.Element register = documento.createElement("Registro" + i);
 
-
-
-            //}
-               
-
-                Source source= new DOMSource(documento);
-                Result result= new StreamResult(new File ("Archivo.xml"));
-                Transformer transformer= TransformerFactory.newInstance().newTransformer();
-                transformer.transform(source, result);
-        }
-        
-        public void estandarizarexcel() throws IOException, WriteException{
-            WorkbookSettings conf= new WorkbookSettings();
-            conf.setEncoding("ISO-8859-1");
-            WritableWorkbook workbook = Workbook.createWorkbook(new File("\\Users\\Ale Rodriguez\\Documents\\NetBeansProjects\\ProyectoEstructurasII\\Proyecto\\Registros.xls"));
-            WritableSheet sheet = workbook.createSheet("Registro", 0);
-            WritableFont fuente = new WritableFont(WritableFont.TIMES,12, WritableFont.NO_BOLD);
-            WritableFont f2 = new WritableFont(WritableFont.TIMES,14, WritableFont.BOLD);
-            WritableCellFormat cformat = new WritableCellFormat(fuente);
-            WritableCellFormat cformat2 = new WritableCellFormat(f2);
-            for (int i = 0; i < 1; i++) {
-                for (int j = 0; j < ap.getCampos().size(); j++) {
-                   sheet.addCell(new jxl.write.Label(i, j, ap.getCampos().get(j).getNombre(),cformat2)); 
-                }
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
+                Text texto = documento.createTextNode(registros.get(i).getData().get(j));
+                campo.appendChild(texto);
+                register.appendChild(campo);
             }
-            for (int i = 1; i < registros.size(); i++) {
-                for (int j = 0; j < ap.getCampos().size(); j++) {
-                   sheet.addCell(new jxl.write.Label(i, j,ap.getRegistro().getData().get(j),cformat)); 
-                }
-            }
-            
-            workbook.write();
-            workbook.close();
+            documento.getDocumentElement().appendChild(register);
         }
+
+        //}
+        Source source = new DOMSource(documento);
+        Result result = new StreamResult(new File("Archivo.xml"));
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.transform(source, result);
+    }
+
+    public void estandarizarexcel() throws IOException, WriteException {
+        WorkbookSettings conf = new WorkbookSettings();
+        conf.setEncoding("ISO-8859-1");
+        WritableWorkbook workbook = Workbook.createWorkbook(new File("\\Users\\Ale Rodriguez\\Documents\\NetBeansProjects\\ProyectoEstructurasII\\Proyecto\\Registros.xls"));
+        WritableSheet sheet = workbook.createSheet("Registro", 0);
+        WritableFont fuente = new WritableFont(WritableFont.TIMES, 12, WritableFont.NO_BOLD);
+        WritableFont f2 = new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD);
+        WritableCellFormat cformat = new WritableCellFormat(fuente);
+        WritableCellFormat cformat2 = new WritableCellFormat(f2);
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                sheet.addCell(new jxl.write.Label(i, j, ap.getCampos().get(j).getNombre(), cformat2));
+            }
+        }
+        for (int i = 1; i < registros.size(); i++) {
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                sheet.addCell(new jxl.write.Label(i, j, ap.getRegistro().getData().get(j), cformat));
+            }
+        }
+
+        workbook.write();
+        workbook.close();
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2185,9 +2153,7 @@ public class MainMenu extends javax.swing.JFrame {
                 new MainMenu().setVisible(true);
             }
         });
-        
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,19 +14,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdmArchivo {
+
     private int contador_de_registros;
     private ArrayList<Campo> campos = new ArrayList();
-    private ArrayList<Integer> bytes=new ArrayList();
+    private ArrayList<Integer> bytes = new ArrayList();
     private Registro registro;
     private File archivo = null;
-    private File archivo_reg=null;
+    private File archivo_reg = null;
     private Btree arbol;
-    
+
     public AdmArchivo(String path) {
         archivo = new File(path);
-        registro=new Registro();
-        archivo_reg=new File(archivo.getParent()+"\\reg_"+archivo.getName());//me crea un archivo de registros en el mismo sitio de la metadata
-        arbol=new Btree(5);
+        registro = new Registro();
+        archivo_reg = new File(archivo.getParent() + "\\reg_" + archivo.getName());//me crea un archivo de registros en el mismo sitio de la metadata
+        arbol = new Btree(5);
     }
 
     public Btree getArbol() {
@@ -36,8 +37,7 @@ public class AdmArchivo {
     public void setArbol(Btree arbol) {
         this.arbol = arbol;
     }
-    
-    
+
     public ArrayList<Integer> getBytes() {
         return bytes;
     }
@@ -45,7 +45,7 @@ public class AdmArchivo {
     public void setBytes(ArrayList<Integer> bytes) {
         this.bytes = bytes;
     }
-    
+
     public int getContador_de_registros() {
         return contador_de_registros;
     }
@@ -53,10 +53,11 @@ public class AdmArchivo {
     public void setContador_de_registros(int contador_de_registros) {
         this.contador_de_registros = contador_de_registros;
     }
-    public void actualizar(){//actualiza el contador de registros en el byte 2000 del archivo metadata
+
+    public void actualizar() {//actualiza el contador de registros en el byte 2000 del archivo metadata
         try {
             //campos + contador de registros
-            RandomAccessFile write_contador_registros=new RandomAccessFile(archivo,"rw");
+            RandomAccessFile write_contador_registros = new RandomAccessFile(archivo, "rw");
             //byte 2000
             write_contador_registros.seek(2000);
             write_contador_registros.writeInt(contador_de_registros);
@@ -95,60 +96,60 @@ public class AdmArchivo {
     public void setCampo(Campo a) {
         campos.add(a);
     }
-    
-    public void read_contadador_registro_from_file() throws FileNotFoundException, IOException{//registro actual - como en un arreglo - 2 significaria que existen 3 registros
-        RandomAccessFile get_int=new RandomAccessFile(archivo, "rw");
+
+    public void read_contadador_registro_from_file() throws FileNotFoundException, IOException {//registro actual - como en un arreglo - 2 significaria que existen 3 registros
+        RandomAccessFile get_int = new RandomAccessFile(archivo, "rw");
         get_int.seek(2000);
         //leeo el entero en el archivo de metadata pos 2000
-        contador_de_registros=get_int.readInt();
+        //if ((contador_de_registros = get_int.readInt()) != ) {
+        contador_de_registros = get_int.readInt();
+        //}
     }
-    
-    
+
     //for obj
     public void write_obj_registro() {//escribe un objeto registro al final del archivo de registros
         try {
             File filename = new File(archivo_reg.getPath());
-            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename,true));
+            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename, true));
             escribir.writeObject(registro);
             escribir.close();
-            
+
             //escribir en reg para prueba de tamaño
-            File filetest=new File("reg.bin");
+            File filetest = new File("reg.bin");
             ObjectOutputStream escribir_test = new ObjectOutputStream(new FileOutputStream(filetest));
             escribir_test.writeObject(registro);
-            
+
             escribir_test.close();
-            
+
         } catch (IOException e) {
 
         }
     }
-    
+
     public void write_arbol() {//escribe el arbol en un archivo
         try {
-            File filename = new File(archivo.getParent()+"\\arbol_"+archivo.getName());
+            File filename = new File(archivo.getParent() + "\\arbol_" + archivo.getName());
             ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename));
             escribir.writeObject(arbol);
             escribir.close();
-            
-            
-            
+
         } catch (IOException e) {
 
         }
     }
+
     public void read_arbol() throws ClassNotFoundException {//lee el arbol de un archivo
-        File filename = new File(archivo.getParent()+"\\arbol_"+archivo.getName());
+        File filename = new File(archivo.getParent() + "\\arbol_" + archivo.getName());
         try {
             ObjectInputStream leer = new ObjectInputStream(new FileInputStream(filename));
-            arbol = (Btree)leer.readObject();
+            arbol = (Btree) leer.readObject();
             leer.close();
 
         } catch (IOException e) {
 
         }
     }
-    
+
     public void read_obj_registro() throws ClassNotFoundException {//lee un objeto registro
         File filename = new File("reg.bin");
         try {
@@ -160,80 +161,69 @@ public class AdmArchivo {
 
         }
     }
-    
-    
 
-    
-    
     public void write_registro_in_bytes(int pos_in_archivo) {//sobreescribe un registro en el archivo de registros
-        
-        
+
         try {
-            
+
             RandomAccessFile escribir = new RandomAccessFile(archivo_reg.getPath(), "rw");
-            
+
             //nos posicionamos en el archivo
             escribir.seek(pos_in_archivo);
-            
+
             //escribir el registro
             for (int i = 0; i < bytes.size(); i++) {
                 escribir.write(bytes.get(i));
             }
             escribir.close();
-            
+
         } catch (IOException e) {
 
         }
     }
-    
+
     public void write_registro_innewfile() {//escribe un registro temporal  -           nombre archivo:reg.bin                 directorio:raiz
         File filename = new File("reg.bin");
-        
+
         try {
-            
+
             RandomAccessFile escribir = new RandomAccessFile(filename, "rw");
-            
+
             //escribir el registro
             for (int i = 0; i < bytes.size(); i++) {
                 escribir.write(bytes.get(i));
             }
-            
-            
+
             escribir.close();
-            
+
         } catch (IOException e) {
 
         }
     }
-    
-    
-    
-    public void read_registro_in_bytes(int pos_in_archivo,int tamaño_registro_enbytes) throws ClassNotFoundException {//lee un registro del archivo de registros en bytes
-        
+
+    public void read_registro_in_bytes(int pos_in_archivo, int tamaño_registro_enbytes) throws ClassNotFoundException {//lee un registro del archivo de registros en bytes
+
         File filename = new File(archivo_reg.getPath());
-        
+
         try {
-            
-            RandomAccessFile r=new RandomAccessFile(filename,"rw");
-            
+
+            RandomAccessFile r = new RandomAccessFile(filename, "rw");
+
             //nos posicionamos en el archivo
             r.seek(pos_in_archivo);
-            
+
             //leemos byte a byte
             for (int i = 0; i < tamaño_registro_enbytes; i++) {
                 bytes.add(r.read());
             }
-            
-            
+
             r.close();
-            
+
         } catch (IOException e) {
 
         }
     }
-    
-    
-    
+
     //read and write metadata de campos
     public void write() {
         try {
@@ -255,7 +245,7 @@ public class AdmArchivo {
             leer.close();
 
         } catch (IOException e) {
-            
+
         }
     }
 
@@ -278,6 +268,7 @@ public class AdmArchivo {
             }
         }
     }
+
     public void WriteHead(int head) {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -341,8 +332,7 @@ public class AdmArchivo {
             ex.printStackTrace();
         }
     }
-    
-    
+
     /*
     private ArrayList<Campo> campos = new ArrayList();
     private ArrayList<Registro> registros = new ArrayList();
@@ -470,6 +460,5 @@ public class AdmArchivo {
             ex.printStackTrace();
         }
     }
-    */
-    
+     */
 }
