@@ -1414,21 +1414,18 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-<<<<<<< HEAD
-        
-        
-<<<<<<< Updated upstream
+
         //ingresar al arbol
         
         
-=======
 
->>>>>>> f6141a1863744f78b97d320a239ef79a058e1011
+
+
         System.out.println(ap.getContador_de_registros());
 
-=======
+
         
->>>>>>> Stashed changes
+
         ap.setRegistro(new Registro(ap.getContador_de_registros()));
 
         //llenarEspacios();
@@ -1452,13 +1449,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         //se actualiza el contador de registros en la metadata
         ap.actualizar();
-<<<<<<< Updated upstream
+
 
         JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
-=======
+
         
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
->>>>>>> Stashed changes
+
         /*
         
         
@@ -1515,12 +1512,12 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_registroActionPerformed
 
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
-<<<<<<< HEAD
+
         int llave=Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
         //idea de Btree
-=======
-        int llave = Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
->>>>>>> f6141a1863744f78b97d320a239ef79a058e1011
+
+        
+
         insertarRegistros.pack();
         insertarRegistros.setModal(true);
         insertarRegistros.setLocationRelativeTo(this);
