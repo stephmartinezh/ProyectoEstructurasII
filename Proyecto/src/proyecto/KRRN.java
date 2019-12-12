@@ -5,14 +5,27 @@
  */
 package proyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author edas
  */
-public class KRRN {
+public class KRRN implements Serializable {
     
-    int key;
-    int RRN;
+    protected int key;
+    protected int RRN;
+
+    public KRRN() {
+        key=-1;
+        RRN=-1;
+    }
+
+    public KRRN(int key, int RRN) {
+        this.key = key;
+        this.RRN = RRN;
+    }
+
     
     
     

@@ -5,11 +5,13 @@
  */
 package proyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author edas
  */
-public class Bnode {
+public class Bnode implements Serializable {
     
     protected KRRN keys[];//keys 
     protected int t;//minimun range for keys

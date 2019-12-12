@@ -12,21 +12,21 @@ import java.io.Serializable;
  * @author edas
  */
 
-public class Btree implements Serializable{
+public class Btree implements Serializable {
     protected Bnode root;
     protected int t;
-
+    
     public Btree(int t) { // se inicializa el arbol-b vacio
         root=null;
         this.t = t;
+        
     }
     
     public void insert(int key,int RRN){
         if (root==null) {
             root=new Bnode(t,true);
             //root.getKeys()[root.getN()]=key;
-            root.keys[0].key=key;
-            root.keys[0].RRN=RRN;
+            root.keys[0]=new KRRN(key, RRN);
             //root.setN(root.getN()+1);//aumenta el numero de llaves
             root.n+=1;//aumenta el numero de llaves
         }
@@ -47,7 +47,7 @@ public class Btree implements Serializable{
         }
         else{
             //insert in root node
-            insertNonFull(root, key,RRN);
+            insertNonFull(root,key,RRN);
         }
     }
     
@@ -58,8 +58,7 @@ public class Btree implements Serializable{
                 x.keys[i+1]=x.keys[i];
                 i--;
             }
-            x.keys[i+1].key=key;//se inserta el elemento en la posicion correcta
-            x.keys[i+1].RRN=RRN;
+            x.keys[i+1]=new KRRN(key, RRN);//se inserta el elemento en la posicion correcta
             x.n=x.n+1;//aumenta el numero de llaves de x
         }else{//not leaf
             
@@ -128,7 +127,7 @@ public class Btree implements Serializable{
     }
     
     //funcion buscar llave(retorna el nodo)
-    Bnode search(Bnode x,int k){ 
+    int search(Bnode x,int k){ 
         // primer llave mayor o igual a k
         int i = 0; 
         while (i < x.n && k > x.keys[i].key){
@@ -137,13 +136,13 @@ public class Btree implements Serializable{
         } 
         // una de las llaves en el arbol es igual a k 
         if (x.keys[i].key == k){
-            return x; 
+            return x.keys[i].RRN; 
 
         } 
         // no esta en el arbol
         if (x.leaf == true) {
 
-            return null; 
+            return -1; 
         }
         // ir al subnodo adecuado
         return search(x.childs[i],k);

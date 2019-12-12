@@ -16,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
 
 public class MainMenu extends javax.swing.JFrame {
-    Btree b=new Btree(5);
+    
+    
     AdmArchivo ap;
     String nombreArchivo;
     int cantidadCampos = 0;
@@ -866,6 +867,11 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
         setBackground(new java.awt.Color(188, 90, 41));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                guardar_arbol(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(234, 157, 79));
 
@@ -1361,6 +1367,7 @@ public class MainMenu extends javax.swing.JFrame {
                     archivo3 = fc.getSelectedFile();
                     ap = new AdmArchivo(archivo3.getPath());
                     ap.read();
+                    ap.read_arbol();
                     condAbrirArchivos = 1;
                     //ap.cargarArchivo();
                 }
@@ -1410,6 +1417,7 @@ public class MainMenu extends javax.swing.JFrame {
 <<<<<<< HEAD
         
         
+<<<<<<< Updated upstream
         //ingresar al arbol
         
         
@@ -1418,10 +1426,15 @@ public class MainMenu extends javax.swing.JFrame {
 >>>>>>> f6141a1863744f78b97d320a239ef79a058e1011
         System.out.println(ap.getContador_de_registros());
 
+=======
+        
+>>>>>>> Stashed changes
         ap.setRegistro(new Registro(ap.getContador_de_registros()));
 
         //llenarEspacios();
         ap.getRegistro().getData().add(nombreRegistro0.getText());
+        //ingresar al arbol
+        ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)),ap.getContador_de_registros());
         ap.getRegistro().getData().add(nombreRegistro1.getText());
         ap.getRegistro().getData().add(nombreRegistro2.getText());
         ap.getRegistro().getData().add(nombreRegistro3.getText());
@@ -1439,8 +1452,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         //se actualiza el contador de registros en la metadata
         ap.actualizar();
+<<<<<<< Updated upstream
 
         JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
+=======
+        
+        JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
+>>>>>>> Stashed changes
         /*
         
         
@@ -1929,6 +1947,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
         // TODO add your handling code here:
+        /*
         try {
             //tomar el tercer registro del archivo
 <<<<<<< HEAD
@@ -1949,6 +1968,14 @@ public class MainMenu extends javax.swing.JFrame {
 
         System.out.println("rrn->" + ap.getRegistro().RRN);
         System.out.println(ap.getRegistro().getData());
+        */
+        
+        
+        
+            
+        
+        
+        
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
@@ -1961,6 +1988,11 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize()-1));
         }
     }//GEN-LAST:event_bt_borrarRegistrosMouseClicked
+
+    private void guardar_arbol(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_guardar_arbol
+        // TODO add your handling code here:
+        ap.write_arbol();
+    }//GEN-LAST:event_guardar_arbol
 
     public void introducir() {
         System.out.println(ap.getCampos().size());
@@ -2059,6 +2091,9 @@ public class MainMenu extends javax.swing.JFrame {
                 new MainMenu().setVisible(true);
             }
         });
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

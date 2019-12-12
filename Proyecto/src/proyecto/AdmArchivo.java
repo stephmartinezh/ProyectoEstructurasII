@@ -20,12 +20,21 @@ public class AdmArchivo {
     private Registro registro;
     private File archivo = null;
     private File archivo_reg=null;
-    
+    private Btree arbol;
     
     public AdmArchivo(String path) {
         archivo = new File(path);
         registro=new Registro();
         archivo_reg=new File(archivo.getParent()+"\\reg_"+archivo.getName());//me crea un archivo de registros en el mismo sitio de la metadata
+        arbol=new Btree(5);
+    }
+
+    public Btree getArbol() {
+        return arbol;
+    }
+
+    public void setArbol(Btree arbol) {
+        this.arbol = arbol;
     }
     
     
@@ -114,7 +123,32 @@ public class AdmArchivo {
 
         }
     }
+    
+    public void write_arbol() {//escribe el arbol en un archivo
+        try {
+            File filename = new File(archivo.getParent()+"\\arbol_"+archivo.getName());
+            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename));
+            escribir.writeObject(arbol);
+            escribir.close();
+            
+            
+            
+        } catch (IOException e) {
 
+        }
+    }
+    public void read_arbol() throws ClassNotFoundException {//lee el arbol de un archivo
+        File filename = new File(archivo.getParent()+"\\arbol_"+archivo.getName());
+        try {
+            ObjectInputStream leer = new ObjectInputStream(new FileInputStream(filename));
+            arbol = (Btree)leer.readObject();
+            leer.close();
+
+        } catch (IOException e) {
+
+        }
+    }
+    
     public void read_obj_registro() throws ClassNotFoundException {//lee un objeto registro
         File filename = new File("reg.bin");
         try {
