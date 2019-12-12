@@ -244,6 +244,23 @@ public class AdmArchivo {
             }
         }
     }
+    public void WriteHead(int head) {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(head);
+            bw.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
+        }
+    }
 
     public void WriteB(String cadena) {
         FileOutputStream fw = null;

@@ -114,7 +114,7 @@ public class LinkedList {
     }
 
     //Devuelve el dato en la posicion mandada
-    public Object elementoPosicion(int posicion) {
+    public int elementoPosicion(int posicion) {
         if (posicion >= 1 && posicion <= size) {
             Nodo tmp = inicio;
             for (int i = 2; i < posicion; i++) {
@@ -123,12 +123,12 @@ public class LinkedList {
             return tmp.getData();
         } else {
             System.out.println("Ingreso una posicion incorrecta.");
-            return null;
+            return -1;
         }
     }
 
     //Devuelve el dato siguiente a la posicion ingresada
-    public Object obtenerSiguiente(int posicion) {
+    public int obtenerSiguiente(int posicion) {
         if (posicion >= 1 && posicion < size) {
             Nodo tmp = inicio;
             for (int i = 2; i < posicion; i++) {
@@ -137,12 +137,12 @@ public class LinkedList {
             return tmp.getData();
         } else {
             System.out.println("Ingreso una posicion incorrecta.");
-            return null;
+            return -1;
         }
     }
 
     //Devuelve el dato anterior a la posicion ingresada
-    public Object obtenerAnterior(int posicion) {
+    public int obtenerAnterior(int posicion) {
         if (posicion > 1 && posicion <= size) {
             Nodo tmp = inicio;
             for (int i = 2; i < posicion; i++) {
@@ -151,9 +151,18 @@ public class LinkedList {
             return tmp.getData();
         } else {
             System.out.println("Ingreso una posicion incorrecta.");
-            return null;
+            return -1;
         }
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
 
     //Vacia la lista
     public void anula() {
@@ -164,4 +173,5 @@ public class LinkedList {
             System.out.println("La lista esta vacia.");
         }
     }
+    
 }

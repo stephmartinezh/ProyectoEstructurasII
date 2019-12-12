@@ -618,6 +618,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         bt_borrarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_borrarRegistros.setText("Borrar Registros");
+        bt_borrarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_borrarRegistrosMouseClicked(evt);
+            }
+        });
 
         bt_listarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_listarRegistros.setText("Listar Registros");
@@ -1251,6 +1256,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jb_cerrarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cerrarArchivoMouseClicked
         //nombredelarchivo(variable global).close()
+        ap.WriteHead(availist.elementoPosicion(1));
         cantidadCampos = 0;
         condAbrirArchivos = 0;
         key = false;
@@ -1484,6 +1490,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
         int llave=Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
+        //idea de Btree
         insertarRegistros.pack();
         insertarRegistros.setModal(true);
         insertarRegistros.setLocationRelativeTo(this);
@@ -1762,6 +1769,17 @@ public class MainMenu extends javax.swing.JFrame {
         System.out.println("rrn->"+ap.getRegistro().RRN);
         System.out.println(ap.getRegistro().getData());
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
+
+    private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
+       
+        if(availist.vacia()){
+            ap.getRegistro().setIndicador('*');
+            ap.getRegistro().setRRNSig(ap.getRegistro().getRRN());
+        }else{
+            ap.getRegistro().setIndicador('*');
+            ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize()-1));
+        }
+    }//GEN-LAST:event_bt_borrarRegistrosMouseClicked
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();

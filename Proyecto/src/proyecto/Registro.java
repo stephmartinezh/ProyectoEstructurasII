@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Registro implements Serializable{
     int RRN;//posicion en el archivo
+    int RRNSig=-1;
+    char indicador=' ';
     ArrayList<String> data=new ArrayList<>();//contenido del registro
 
     public Registro(int RRN) {
@@ -13,6 +15,23 @@ public class Registro implements Serializable{
 
     public Registro() {
     }
+
+    public int getRRNSig() {
+        return RRNSig;
+    }
+
+    public void setRRNSig(int RRNSig) {
+        this.RRNSig = RRNSig;
+    }
+
+    public char getIndicador() {
+        return indicador;
+    }
+
+    public void setIndicador(char indicador) {
+        this.indicador = indicador;
+    }
+    
 
     
     
