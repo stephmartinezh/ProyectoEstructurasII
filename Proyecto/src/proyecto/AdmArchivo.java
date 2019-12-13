@@ -22,7 +22,8 @@ public class AdmArchivo {
     private File archivo = null;
     private File archivo_reg = null;
     private Btree arbol;
-
+    private ArrayList<Registro> registros_10 =new ArrayList<>();
+    
     public AdmArchivo(String path) {
         archivo = new File(path);
         registro = new Registro();
@@ -69,6 +70,14 @@ public class AdmArchivo {
         }
     }
 
+    public ArrayList<Registro> getRegistros_10() {
+        return registros_10;
+    }
+
+    public void setRegistros_10(ArrayList<Registro> registros_10) {
+        this.registros_10 = registros_10;
+    }
+    
     public Registro getRegistro() {
         return registro;
     }
@@ -95,6 +104,24 @@ public class AdmArchivo {
 
     public void setCampo(Campo a) {
         campos.add(a);
+    }
+    
+    public void cargar_arreglo_10_registros() throws ClassNotFoundException{
+        
+        File filename=new File(archivo.getParent()+"\\reg_"+archivo.getName());
+        try {
+            ObjectInputStream leer = new ObjectInputStream(new FileInputStream(filename));
+            for (int i = 0; i <= 10; i++) {
+                //agregamos 10 registros
+                Registro var=(Registro)leer.readObject();
+                registros_10.add(var);
+            }
+             
+            leer.close();
+        } catch (IOException e) {
+
+        }
+        
     }
 
     public void read_contadador_registro_from_file() throws FileNotFoundException, IOException {//registro actual - como en un arreglo - 2 significaria que existen 3 registros
@@ -341,6 +368,31 @@ public class AdmArchivo {
         }
     }
 
+//    public ArrayList<Registro> cargar_10_reg(ArrayList registros) {
+//        try {
+//           registros = new ArrayList();
+//            Registro temp;
+//            if (archivo_reg.exists()) {
+//                FileInputStream entrada
+//                        = new FileInputStream(archivo_reg);
+//                ObjectInputStream objeto
+//                        = new ObjectInputStream(entrada);
+//                try {
+//                    while ((temp = (Registro) objeto.readObject()) != null) {
+//                        registros.add(temp);
+//                    }
+//                } catch (EOFException e) {
+//                    //encontro el final del archivo
+//                }
+//                objeto.close();
+//
+//                entrada.close();
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return registros;
+//    }
     /*
     private ArrayList<Campo> campos = new ArrayList();
     private ArrayList<Registro> registros = new ArrayList();

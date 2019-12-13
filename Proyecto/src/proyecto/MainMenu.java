@@ -49,7 +49,7 @@ public class MainMenu extends javax.swing.JFrame {
     boolean key = false;
     ArrayList<Registro> registros = new ArrayList();
     LinkedList availist = new LinkedList();
-
+    
     //objeto globlal para restriccion jtextfield en insertar registros
     RestrictedTextField caja_registro0;
     RestrictedTextField caja_registro1;
@@ -1113,7 +1113,9 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void camposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camposMouseClicked
         ventanaCampo.pack();
         ventanaCampo.setModal(true);
@@ -1138,6 +1140,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void estandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estandarizacionMouseClicked
         try {
+            
             estandarizarxml();
             estandarizarexcel();
             //ventanaestand.pack();
@@ -1458,6 +1461,7 @@ public class MainMenu extends javax.swing.JFrame {
         ap.getRegistro().getData().add(nombreRegistro7.getText());
         ap.getRegistro().getData().add(nombreRegistro8.getText());
         
+        registros.add(ap.getRegistro());
         //actualiza el contador
         ap.setContador_de_registros(ap.getContador_de_registros()+1);
         //guardar registro en archivo de registros
@@ -1467,7 +1471,7 @@ public class MainMenu extends javax.swing.JFrame {
         ap.actualizar();
 
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
-
+        
         
 
         /*
@@ -1958,35 +1962,42 @@ public class MainMenu extends javax.swing.JFrame {
 
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
-        // TODO add your handling code here:
-        /*
-        String cadenaRegistros = "";
-        try {
+        
+            try {
+                // TODO add your handling code here:
+                //registros=ap.cargar_arreglo_10_registros(registros);
+                ap.cargar_arreglo_10_registros();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            /*
+            String cadenaRegistros = "";
+            try {
             //tomar el tercer registro del archivo
             for (int i = 0; i < 10; i++) {
-                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, i) *194, 194);
-                cadenaRegistros += ap.getRegistro().getData();
-                cadenaRegistros += "\n";
+            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, i) *194, 194);
+            cadenaRegistros += ap.getRegistro().getData();
+            cadenaRegistros += "\n";
             }
 
             //System.out.println(ap.getRegistro().data);
-        } catch (ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ap.write_registro_innewfile();
-
-        try {
+            }
+            ap.write_registro_innewfile();
+            
+            try {
             ap.read_obj_registro();
-        } catch (ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(cadenaRegistros);
-        //JOptionPane.showMessageDialog(null, cadenaRegistros);
-        */
+            }
+            System.out.println(cadenaRegistros);
+            //JOptionPane.showMessageDialog(null, cadenaRegistros);
+            */
         
-        System.out.println("rrn de registros");
-        System.out.println(ap.getArbol().root.keys[0].RRN);
-        System.out.println(ap.getArbol().root.keys[1].RRN);
+        
+        
         
         
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
@@ -2080,56 +2091,62 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }
 
-    public void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        DOMImplementation implementation = builder.getDOMImplementation();
+    
+ public  void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException{
+                DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder=factory.newDocumentBuilder();
+                DOMImplementation implementation= builder.getDOMImplementation();
 
-        Document documento = implementation.createDocument(null, "Archivo", null);
-        documento.setXmlVersion("1.0");
-        for (int i = 0; i < registros.size(); i++) {
-            org.w3c.dom.Element register = documento.createElement("Registro" + i);
+                Document documento= implementation.createDocument(null, "Archivo", null);
+                documento.setXmlVersion("1.0");
+                for (int i = 0; i < registros.size(); i++) {
+                org.w3c.dom.Element register = documento.createElement("Registro"+i);     
+            
+               
+                    for (int j = 0; j < ap.getCampos().size(); j++) {
+                    org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
+                    Text texto=documento.createTextNode(registros.get(i).getData().get(j)); 
+                    campo.appendChild(texto);
+                    register.appendChild(campo);
+                    }
+                     documento.getDocumentElement().appendChild(register);
+                }
 
-            for (int j = 0; j < ap.getCampos().size(); j++) {
-                org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
-                Text texto = documento.createTextNode(registros.get(i).getData().get(j));
-                campo.appendChild(texto);
-                register.appendChild(campo);
-            }
-            documento.getDocumentElement().appendChild(register);
+
+
+
+            //}
+               
+
+                Source source= new DOMSource(documento);
+                Result result= new StreamResult(new File ("Archivo.xml"));
+                Transformer transformer= TransformerFactory.newInstance().newTransformer();
+                transformer.transform(source, result);
         }
-
-        //}
-        Source source = new DOMSource(documento);
-        Result result = new StreamResult(new File("Archivo.xml"));
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        transformer.transform(source, result);
-    }
-
-    public void estandarizarexcel() throws IOException, WriteException {
-        WorkbookSettings conf = new WorkbookSettings();
-        conf.setEncoding("ISO-8859-1");
-        WritableWorkbook workbook = Workbook.createWorkbook(new File("\\Users\\Ale Rodriguez\\Documents\\NetBeansProjects\\ProyectoEstructurasII\\Proyecto\\Registros.xls"));
-        WritableSheet sheet = workbook.createSheet("Registro", 0);
-        WritableFont fuente = new WritableFont(WritableFont.TIMES, 12, WritableFont.NO_BOLD);
-        WritableFont f2 = new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD);
-        WritableCellFormat cformat = new WritableCellFormat(fuente);
-        WritableCellFormat cformat2 = new WritableCellFormat(f2);
-        for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < ap.getCampos().size(); j++) {
-                sheet.addCell(new jxl.write.Label(i, j, ap.getCampos().get(j).getNombre(), cformat2));
+        
+        public void estandarizarexcel() throws IOException, WriteException{
+            WorkbookSettings conf= new WorkbookSettings();
+            conf.setEncoding("ISO-8859-1");
+            WritableWorkbook workbook = Workbook.createWorkbook(new File("Registros.xls"));
+            WritableSheet sheet = workbook.createSheet("Registro", 0);
+            WritableFont fuente = new WritableFont(WritableFont.TIMES,12, WritableFont.NO_BOLD);
+            WritableFont f2 = new WritableFont(WritableFont.TIMES,14, WritableFont.BOLD);
+            WritableCellFormat cformat = new WritableCellFormat(fuente);
+            WritableCellFormat cformat2 = new WritableCellFormat(f2);
+            for (int i = 0; i <registros.size() ; i++) {
+                for (int j = 0; j <ap.getCampos().size() ; j++) {
+                   sheet.addCell(new jxl.write.Label(j, i, ap.getCampos().get(j).getNombre(),cformat2)); 
+                }
             }
-        }
-        for (int i = 1; i < registros.size(); i++) {
-            for (int j = 0; j < ap.getCampos().size(); j++) {
-                sheet.addCell(new jxl.write.Label(i, j, ap.getRegistro().getData().get(j), cformat));
+            for (int i = 1; i < registros.size(); i++) {
+                for (int j = 0; j < ap.getCampos().size(); j++) {
+                   sheet.addCell(new jxl.write.Label(j, i,registros.get(i).getData().get(j),cformat)); 
+                }
             }
+            
+            workbook.write();
+            workbook.close();
         }
-
-        workbook.write();
-        workbook.close();
-    }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
