@@ -134,10 +134,9 @@ public class Btree implements Serializable {
 
             i++; 
         } 
-        // una de las llaves en el arbol es igual a k 
         if (x.keys[i].key == k){
             return x.keys[i].RRN; 
-
+            
         } 
         // no esta en el arbol
         if (x.leaf == true) {
