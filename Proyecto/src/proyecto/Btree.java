@@ -126,7 +126,7 @@ public class Btree implements Serializable {
         x.n+=1;
     }
     
-    //funcion buscar llave(retorna el nodo)
+    //funcion buscar llave(retorna RRN)
     int search(Bnode x,int k){ 
         // primer llave mayor o igual a k
         int i = 0; 

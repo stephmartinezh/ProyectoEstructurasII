@@ -1447,7 +1447,7 @@ public class MainMenu extends javax.swing.JFrame {
         ap.setRegistro(new Registro(ap.getContador_de_registros()));
         ap.getRegistro().getData().add(nombreRegistro0.getText());
         //ingresar al arbol
-        System.out.println(ap.getContador_de_registros());
+        
         ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
         ap.getRegistro().getData().add(nombreRegistro1.getText());
         ap.getRegistro().getData().add(nombreRegistro2.getText());
@@ -1528,27 +1528,23 @@ public class MainMenu extends javax.swing.JFrame {
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
 
         int llave = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
-        try {
+        if (ap.getArbol().search(ap.getArbol().root, llave)==-1) {
+            System.out.println("registro no encontrado");
+        }else{
             
-            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave) * 398, 398);
-
-            //System.out.println(ap.getRegistro().data);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ap.write_registro_innewfile();
-
-        try {
-            ap.read_obj_registro();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                //leer el tamaño desde reg
+                File filename=new File("reg.bin");
+                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave), (int)filename.length());//encuentra la llave y nos devuelve el RRN asociado - multiplicamos por el tamaño del registro para encontrar la posicion exacta
+                ap.write_registro_innewfile();
+                ap.read_obj_registro();
+                System.out.println(ap.getRegistro().getData());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
-        if (ap.getArbol().search(ap.getArbol().root, llave) == -1) {
-            JOptionPane.showMessageDialog(null, "No se encontro el registro");
-        } else {
-            JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
-        }
+        
         //idea de Btree
 
         /*insertarRegistros.pack();

@@ -183,19 +183,27 @@ public class AdmArchivo {
     }
 
     public void write_registro_innewfile() {//escribe un registro temporal  -           nombre archivo:reg.bin                 directorio:raiz
-        File filename = new File("reg.bin");
-
+        
+        
+        
         try {
-
+            File filename=new File("reg.bin");
+            FileOutputStream escribir=new FileOutputStream(filename);
+            for (int i = 0; i < bytes.size(); i++) {
+                escribir.write(bytes.get(i));
+            }
+            bytes.clear();//limpiamos el arraylist
+            escribir.close();
+            /*        
             RandomAccessFile escribir = new RandomAccessFile(filename, "rw");
-
+            
             //escribir el registro
             for (int i = 0; i < bytes.size(); i++) {
                 escribir.write(bytes.get(i));
             }
-
+            
             escribir.close();
-
+            */        
         } catch (IOException e) {
 
         }
@@ -210,13 +218,13 @@ public class AdmArchivo {
             RandomAccessFile r = new RandomAccessFile(filename, "rw");
 
             //nos posicionamos en el archivo
-            r.seek(pos_in_archivo);
+            r.seek(pos_in_archivo*tamaño_registro_enbytes);
 
             //leemos byte a byte
             for (int i = 0; i < tamaño_registro_enbytes; i++) {
                 bytes.add(r.read());
             }
-
+            
             r.close();
 
         } catch (IOException e) {
