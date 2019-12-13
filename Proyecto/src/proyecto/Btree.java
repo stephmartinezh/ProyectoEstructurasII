@@ -134,7 +134,9 @@ public class Btree implements Serializable {
 
             i++; 
         } 
-        if (x.keys[i].key == k){
+        
+        
+        if (i<x.n && x.keys[i].key == k){
             return x.keys[i].RRN; 
             
         } 

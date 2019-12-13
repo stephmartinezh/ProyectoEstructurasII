@@ -212,7 +212,7 @@ public class AdmArchivo {
     public void read_registro_in_bytes(int pos_in_archivo, int tamaño_registro_enbytes) throws ClassNotFoundException {//lee un registro del archivo de registros en bytes
 
         File filename = new File(archivo_reg.getPath());
-
+        
         try {
 
             RandomAccessFile r = new RandomAccessFile(filename, "rw");
