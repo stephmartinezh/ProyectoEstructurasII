@@ -632,11 +632,6 @@ public class MainMenu extends javax.swing.JFrame {
                 bt_buscarRegistrosMouseClicked(evt);
             }
         });
-        bt_buscarRegistros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_buscarRegistrosActionPerformed(evt);
-            }
-        });
 
         bt_borrarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         bt_borrarRegistros.setText("Borrar Registros");
@@ -701,6 +696,13 @@ public class MainMenu extends javax.swing.JFrame {
         jButton7.setText("jButton7");
 
         insertarRegistros.setTitle("Insertar Registro");
+        insertarRegistros.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                insertarRegistrosWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         nombreCampo0.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         nombreCampo0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1441,45 +1443,32 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-
+        
+        ap.setRegistro(new Registro(ap.getContador_de_registros()));
+        ap.getRegistro().getData().add(nombreRegistro0.getText());
         //ingresar al arbol
-        if (!availist.vacia()) {
-            ap.setRegistro(new Registro(availist.elementoPosicion(1)));
-            availist.borrarElemento(1);
-        } else {
-
-            System.out.println(ap.getContador_de_registros());
-
-            ap.setRegistro(new Registro(ap.getContador_de_registros()));
-
-            //llenarEspacios();
-            ap.getRegistro().getData().add(nombreRegistro0.getText());
-            //ingresar al arbol
-            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
-            ap.getRegistro().getData().add(nombreRegistro1.getText());
-            ap.getRegistro().getData().add(nombreRegistro2.getText());
-            ap.getRegistro().getData().add(nombreRegistro3.getText());
-            ap.getRegistro().getData().add(nombreRegistro4.getText());
-            ap.getRegistro().getData().add(nombreRegistro5.getText());
-            ap.getRegistro().getData().add(nombreRegistro6.getText());
-            ap.getRegistro().getData().add(nombreRegistro7.getText());
-            ap.getRegistro().getData().add(nombreRegistro8.getText());
-            ap.getRegistro().getData().add(nombreRegistro9.getText());
-
-            ap.setContador_de_registros(ap.getContador_de_registros() + 1);
-
-            ap.setContador_de_registros(ap.getContador_de_registros() + 1);
-        }
-
+        System.out.println(ap.getContador_de_registros());
+        ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
+        ap.getRegistro().getData().add(nombreRegistro1.getText());
+        ap.getRegistro().getData().add(nombreRegistro2.getText());
+        ap.getRegistro().getData().add(nombreRegistro3.getText());
+        ap.getRegistro().getData().add(nombreRegistro4.getText());
+        ap.getRegistro().getData().add(nombreRegistro5.getText());
+        ap.getRegistro().getData().add(nombreRegistro6.getText());
+        ap.getRegistro().getData().add(nombreRegistro7.getText());
+        ap.getRegistro().getData().add(nombreRegistro8.getText());
+        
+        //actualiza el contador
+        ap.setContador_de_registros(ap.getContador_de_registros()+1);
         //guardar registro en archivo de registros
         ap.write_obj_registro();
 
         //se actualiza el contador de registros en la metadata
         ap.actualizar();
 
-        JOptionPane.showMessageDialog(this, "El regsitro fue guardado exitosamente");
-
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
+
+        
 
         /*
         
@@ -1538,23 +1527,36 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
 
-        int llave = Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
+        int llave = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
+        try {
+            
+            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave) * 398, 398);
+
+            //System.out.println(ap.getRegistro().data);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ap.write_registro_innewfile();
+
+        try {
+            ap.read_obj_registro();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (ap.getArbol().search(ap.getArbol().root, llave) == -1) {
+            JOptionPane.showMessageDialog(null, "No se encontro el registro");
+        } else {
+            JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
+        }
         //idea de Btree
 
-        insertarRegistros.pack();
+        /*insertarRegistros.pack();
         insertarRegistros.setModal(true);
         insertarRegistros.setLocationRelativeTo(this);
-        insertarRegistros.setVisible(true);
+        insertarRegistros.setVisible(true);*/
 
     }//GEN-LAST:event_bt_buscarRegistrosMouseClicked
-
-    private void bt_buscarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosActionPerformed
-        int llave = Integer.parseInt(JOptionPane.showInputDialog("Ingrese campo llave:"));
-        insertarRegistros.pack();
-        insertarRegistros.setModal(true);
-        insertarRegistros.setLocationRelativeTo(this);
-        insertarRegistros.setVisible(true);
-    }//GEN-LAST:event_bt_buscarRegistrosActionPerformed
 
     private void bt_modificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarRegistrosMouseClicked
 
@@ -1562,14 +1564,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_introducirRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosActionPerformed
         // TODO add your handling code here:
-
-        try {
-            System.out.println(ap.getCampos().size());
-            //obtenermos el conteo de registros
-            ap.read_contadador_registro_from_file();
-        } catch (IOException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        
 
         //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
         //caja de registro 0
@@ -1967,14 +1963,17 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
         // TODO add your handling code here:
-        int llave = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
+        /*
+        String cadenaRegistros = "";
         try {
             //tomar el tercer registro del archivo
-            
-            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave) * 202, 202);
+            for (int i = 0; i < 10; i++) {
+                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, i) *194, 194);
+                cadenaRegistros += ap.getRegistro().getData();
+                cadenaRegistros += "\n";
+            }
 
             //System.out.println(ap.getRegistro().data);
-
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1985,16 +1984,15 @@ public class MainMenu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        System.out.println(cadenaRegistros);
+        //JOptionPane.showMessageDialog(null, cadenaRegistros);
+        */
         
-        System.out.println(ap.getRegistro().getData());
-        if (ap.getArbol().search(ap.getArbol().root,llave)==-1) {
-            System.out.println("not found");
-        }else{
-            JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
-        }
+        System.out.println("rrn de registros");
+        System.out.println(ap.getArbol().root.keys[0].RRN);
+        System.out.println(ap.getArbol().root.keys[1].RRN);
         
-
+        
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
@@ -2012,6 +2010,19 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ap.write_arbol();
     }//GEN-LAST:event_guardar_arbol
+
+    private void insertarRegistrosWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_insertarRegistrosWindowGainedFocus
+        // TODO add your handling code here:
+        
+        //cada vez que entramos a la ventana de insertar registros actualiza el contador de registros
+        try {
+            
+            //obtenermos el conteo de registros
+            ap.read_contadador_registro_from_file();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_insertarRegistrosWindowGainedFocus
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
