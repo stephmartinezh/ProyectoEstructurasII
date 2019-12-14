@@ -1499,7 +1499,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-        if (ap.getAvailist().isEmpty()) {
+        //if (ap.getAvailist().isEmpty()) {
             //no hay espacios disponibles , guardar al final
             ap.setRegistro(new Registro(ap.getContador_de_registros()));
             ap.getRegistro().getData().add(nombreRegistro0.getText());
@@ -1524,7 +1524,9 @@ public class MainMenu extends javax.swing.JFrame {
             ap.actualizar();
 
             
-        }else{
+        //}else{
+        
+            /*
             //agregar en posicion proveniente del availist
             int pop=ap.getAvailist().pop();
             ap.setRegistro(new Registro(pop));
@@ -1566,7 +1568,7 @@ public class MainMenu extends javax.swing.JFrame {
             
         }
         
-        
+        */
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
         
         
@@ -2091,13 +2093,15 @@ public class MainMenu extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         });
-
+        
         for (Registro t : ap.getRegistros_10()) {
                 Object row[] = {t.getData().get(0), t.getData().get(1), t.getData().get(2), t.getData().get(3), t.getData().get(4), t.getData().get(5), t.getData().get(6), t.getData().get(7), t.getData().get(8)};
                 DefaultTableModel m = (DefaultTableModel) tabla1.getModel();
                 m.addRow(row);
                 tabla1.setModel(m);
         }
+        
+        
         
         listar_registros.pack();
         listar_registros.setModal(true);
@@ -2132,6 +2136,7 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ap.write_arbol();
         
+        
     }//GEN-LAST:event_guardar_arbol
 
     private void insertarRegistrosWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_insertarRegistrosWindowGainedFocus
@@ -2153,12 +2158,11 @@ public class MainMenu extends javax.swing.JFrame {
         int RRN=ap.getArbol().search(ap.getArbol().root,llave);
         if (RRN==-1) {
             //la llave no se encuentra
+            System.out.println("not found");
         }else{
             
             //guardar RRN en avail
             ap.getAvailist().add(RRN);
-            
-            //eliminar
             ap.getArbol().delete_key(ap.getArbol().root,llave);
             
         }

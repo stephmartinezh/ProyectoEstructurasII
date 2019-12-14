@@ -115,7 +115,7 @@ public class AdmArchivo {
     }
     
     public void cargar_arreglo_10_registros() throws ClassNotFoundException{
-        
+        registros_10.clear();//limpieza antes
         File filename=new File(archivo.getParent()+"\\reg_"+archivo.getName());
         try {
             ObjectInputStream leer = new ObjectInputStream(new FileInputStream(filename));
