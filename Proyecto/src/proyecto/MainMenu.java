@@ -48,7 +48,7 @@ public class MainMenu extends javax.swing.JFrame {
     int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
     ArrayList<Registro> registros = new ArrayList();
-    LinkedList availist = new LinkedList();
+    
     
     //objeto globlal para restriccion jtextfield en insertar registros
     RestrictedTextField caja_registro0;
@@ -1347,7 +1347,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jb_cerrarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cerrarArchivoMouseClicked
         //nombredelarchivo(variable global).close()
-        ap.WriteHead(availist.elementoPosicion(1));
+        //ap.WriteHead(availist.elementoPosicion(1));
         cantidadCampos = 0;
         condAbrirArchivos = 0;
         key = false;
@@ -1499,33 +1499,78 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirInsertarMouseClicked
 
     private void guardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarRegistroMouseClicked
-        
-        ap.setRegistro(new Registro(ap.getContador_de_registros()));
-        ap.getRegistro().getData().add(nombreRegistro0.getText());
-        //ingresar al arbol
-        
-        ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
-        ap.getRegistro().getData().add(nombreRegistro1.getText());
-        ap.getRegistro().getData().add(nombreRegistro2.getText());
-        ap.getRegistro().getData().add(nombreRegistro3.getText());
-        ap.getRegistro().getData().add(nombreRegistro4.getText());
-        ap.getRegistro().getData().add(nombreRegistro5.getText());
-        ap.getRegistro().getData().add(nombreRegistro6.getText());
-        ap.getRegistro().getData().add(nombreRegistro7.getText());
-        ap.getRegistro().getData().add(nombreRegistro8.getText());
-        
-        registros.add(ap.getRegistro());
-        //actualiza el contador
-        ap.setContador_de_registros(ap.getContador_de_registros()+1);
-        //guardar registro en archivo de registros
-        ap.write_obj_registro();
+        if (ap.getAvailist().isEmpty()) {
+            //no hay espacios disponibles , guardar al final
+            ap.setRegistro(new Registro(ap.getContador_de_registros()));
+            ap.getRegistro().getData().add(nombreRegistro0.getText());
+            //ingresar al arbol
+            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), ap.getContador_de_registros());
+            ap.getRegistro().getData().add(nombreRegistro1.getText());
+            ap.getRegistro().getData().add(nombreRegistro2.getText());
+            ap.getRegistro().getData().add(nombreRegistro3.getText());
+            ap.getRegistro().getData().add(nombreRegistro4.getText());
+            ap.getRegistro().getData().add(nombreRegistro5.getText());
+            ap.getRegistro().getData().add(nombreRegistro6.getText());
+            ap.getRegistro().getData().add(nombreRegistro7.getText());
+            ap.getRegistro().getData().add(nombreRegistro8.getText());
 
-        //se actualiza el contador de registros en la metadata
-        ap.actualizar();
+            registros.add(ap.getRegistro());
+            //actualiza el contador
+            ap.setContador_de_registros(ap.getContador_de_registros()+1);
+            //guardar registro en archivo de registros
+            ap.write_obj_registro();
 
+            //se actualiza el contador de registros en la metadata
+            ap.actualizar();
+
+            
+        }else{
+            //agregar en posicion proveniente del availist
+            int pop=ap.getAvailist().pop();
+            ap.setRegistro(new Registro(pop));
+            ap.getRegistro().getData().add(nombreRegistro0.getText());
+            //ingresar al arbol
+            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)),pop);
+            ap.getRegistro().getData().add(nombreRegistro1.getText());
+            ap.getRegistro().getData().add(nombreRegistro2.getText());
+            ap.getRegistro().getData().add(nombreRegistro3.getText());
+            ap.getRegistro().getData().add(nombreRegistro4.getText());
+            ap.getRegistro().getData().add(nombreRegistro5.getText());
+            ap.getRegistro().getData().add(nombreRegistro6.getText());
+            ap.getRegistro().getData().add(nombreRegistro7.getText());
+            ap.getRegistro().getData().add(nombreRegistro8.getText());
+            
+            registros.add(ap.getRegistro());
+            
+            File fileee=new File("reg.bin");
+            try {
+                //reemplazar en posicion adecuada
+                
+                //primero escribir en reg
+                ap.write_obj_registro_innewfile();
+                
+                //leer en bytes de reg
+                ap.read_registro_in_bytes_fromnew();
+                
+                
+                //escribir en bytes en posicion adecuada
+                ap.write_registro_in_bytes(pop*(int)fileee.length());
+                
+                
+                
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
+        
+        
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
         
         
+        ap.write_arbol();
 
         /*
         
@@ -1595,7 +1640,7 @@ public class MainMenu extends javax.swing.JFrame {
                 ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave), (int)filename.length());//encuentra la llave y nos devuelve el RRN asociado - multiplicamos por el tamaño del registro para encontrar la posicion exacta
                 ap.write_registro_innewfile();
                 ap.read_obj_registro();
-                System.out.println(ap.getRegistro().getData());
+                JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1617,9 +1662,6 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_introducirRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosActionPerformed
         // TODO add your handling code here:
-        
-        
-
         //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
         //caja de registro 0
         if (0 < ap.getCampos().size()) {
@@ -2015,7 +2057,9 @@ public class MainMenu extends javax.swing.JFrame {
 
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
-    
+
+            
+
             try {
                 // TODO add your handling code here:
                 //registros=ap.cargar_arreglo_10_registros(registros);
@@ -2024,6 +2068,7 @@ public class MainMenu extends javax.swing.JFrame {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+
             
             tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -2058,30 +2103,12 @@ public class MainMenu extends javax.swing.JFrame {
         listar_registros.setModal(true);
         listar_registros.setLocationRelativeTo(this);
         listar_registros.setVisible(true);
-            /*
-            String cadenaRegistros = "";
-            try {
-            //tomar el tercer registro del archivo
-            for (int i = 0; i < 10; i++) {
-            ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, i) *194, 194);
-            cadenaRegistros += ap.getRegistro().getData();
-            cadenaRegistros += "\n";
-            }
-
-            //System.out.println(ap.getRegistro().data);
-            } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ap.write_registro_innewfile();
             
-            try {
-            ap.read_obj_registro();
-            } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println(cadenaRegistros);
-            //JOptionPane.showMessageDialog(null, cadenaRegistros);
-            */
+
+        
+
+            
+            
         
         
         
@@ -2090,7 +2117,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
-
+        /*
         if (availist.vacia()) {
             ap.getRegistro().setIndicador('*');
             ap.getRegistro().setRRNSig(ap.getRegistro().getRRN());
@@ -2098,6 +2125,7 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getRegistro().setIndicador('*');
             ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize() - 1));
         }
+        */
     }//GEN-LAST:event_bt_borrarRegistrosMouseClicked
 
     private void guardar_arbol(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_guardar_arbol
@@ -2121,18 +2149,27 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_borrarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosActionPerformed
         // TODO add your handling code here:
-        
         int llave=Integer.parseInt(JOptionPane.showInputDialog("ingrese campo llave a eliminar"));
-        
-        ap.getArbol().delete_key(ap.getArbol().root, llave);
-        
-        
+        int RRN=ap.getArbol().search(ap.getArbol().root,llave);
+        if (RRN==-1) {
+            //la llave no se encuentra
+        }else{
+            
+            //guardar RRN en avail
+            ap.getAvailist().add(RRN);
+            
+            //eliminar
+            ap.getArbol().delete_key(ap.getArbol().root,llave);
+            
+        }
         
     }//GEN-LAST:event_bt_borrarRegistrosActionPerformed
+
 
     private void listar_camposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_camposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listar_camposActionPerformed
+
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();

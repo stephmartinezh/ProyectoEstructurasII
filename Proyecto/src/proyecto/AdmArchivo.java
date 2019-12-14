@@ -1,5 +1,5 @@
 package proyecto;
-
+import java.util.*;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,14 +23,14 @@ public class AdmArchivo {
     private File archivo_reg = null;
     private Btree arbol;
     private ArrayList<Registro> registros_10 =new ArrayList<>();
-    
+    LinkedList<Integer> availist=new LinkedList<>();
     public AdmArchivo(String path) {
         archivo = new File(path);
         registro = new Registro();
         archivo_reg = new File(archivo.getParent() + "\\reg_" + archivo.getName());//me crea un archivo de registros en el mismo sitio de la metadata
         arbol = new Btree(5);
     }
-
+    
     public Btree getArbol() {
         return arbol;
     }
@@ -47,6 +47,14 @@ public class AdmArchivo {
         this.bytes = bytes;
     }
 
+    public LinkedList<Integer> getAvailist() {
+        return availist;
+    }
+
+    public void setAvailist(LinkedList<Integer> availist) {
+        this.availist = availist;
+    }
+    
     public int getContador_de_registros() {
         return contador_de_registros;
     }
@@ -152,6 +160,17 @@ public class AdmArchivo {
 
         }
     }
+    public void write_obj_registro_innewfile() {//escribe un objeto registro al final del archivo de registros
+        try {
+            File filename = new File("reg.bin");
+            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(filename, true));
+            escribir.writeObject(registro);
+            escribir.close();
+
+        } catch (IOException e) {
+
+        }
+    }
 
     public void write_arbol() {//escribe el arbol en un archivo
         try {
@@ -249,6 +268,28 @@ public class AdmArchivo {
 
             //leemos byte a byte
             for (int i = 0; i < tamaño_registro_enbytes; i++) {
+                bytes.add(r.read());
+            }
+            
+            r.close();
+
+        } catch (IOException e) {
+
+        }
+    }
+    public void read_registro_in_bytes_fromnew() throws ClassNotFoundException {//lee un registro del archivo de registros en bytes
+
+        File filename = new File("reg.bin");
+        
+        try {
+
+            RandomAccessFile r = new RandomAccessFile(filename, "rw");
+
+            //nos posicionamos en el archivo
+            
+
+            //leemos byte a byte
+            for (int i = 0; i < (int)filename.length(); i++) {
                 bytes.add(r.read());
             }
             
