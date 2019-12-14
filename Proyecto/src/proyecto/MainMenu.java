@@ -163,6 +163,9 @@ public class MainMenu extends javax.swing.JFrame {
         nombreCampo8 = new javax.swing.JLabel();
         nombreCampo9 = new javax.swing.JLabel();
         nombreRegistro9 = new javax.swing.JTextField();
+        listar_registros = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -280,6 +283,11 @@ public class MainMenu extends javax.swing.JFrame {
         listar_campos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listar_camposMouseClicked(evt);
+            }
+        });
+        listar_campos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_camposActionPerformed(evt);
             }
         });
 
@@ -892,6 +900,45 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tabla1.setBackground(new java.awt.Color(153, 153, 0));
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "", "", "", "", "", "", "", "", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla1.setToolTipText("");
+        tabla1.setSelectionBackground(new java.awt.Color(153, 153, 0));
+        tabla1.setSelectionForeground(new java.awt.Color(153, 153, 0));
+        jScrollPane3.setViewportView(tabla1);
+
+        javax.swing.GroupLayout listar_registrosLayout = new javax.swing.GroupLayout(listar_registros.getContentPane());
+        listar_registros.getContentPane().setLayout(listar_registrosLayout);
+        listar_registrosLayout.setHorizontalGroup(
+            listar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_registrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listar_registrosLayout.setVerticalGroup(
+            listar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_registrosLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
         setBackground(new java.awt.Color(188, 90, 41));
@@ -1145,14 +1192,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void estandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estandarizacionMouseClicked
         try {
-            
+            ap.cargar_arreglo_10_registros();
+            registros=ap.getRegistros_10();
             estandarizarxml();
             estandarizarexcel();
             //ventanaestand.pack();
             //ventanaestand.setModal(true);
             //ventanaestand.setLocationRelativeTo(this);
             //ventanaestand.setVisible(true);
-        } catch (ParserConfigurationException | TransformerException | IOException | WriteException ex) {
+        } catch (ParserConfigurationException | TransformerException | IOException | WriteException | ClassNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_estandarizacionMouseClicked
@@ -1967,7 +2015,7 @@ public class MainMenu extends javax.swing.JFrame {
 
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
-        
+    
             try {
                 // TODO add your handling code here:
                 //registros=ap.cargar_arreglo_10_registros(registros);
@@ -1976,6 +2024,40 @@ public class MainMenu extends javax.swing.JFrame {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            
+            tabla.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+
+        for (Registro t : ap.getRegistros_10()) {
+                Object row[] = {t.getData().get(0), t.getData().get(1), t.getData().get(2), t.getData().get(3), t.getData().get(4), t.getData().get(5), t.getData().get(6), t.getData().get(7), t.getData().get(8)};
+                DefaultTableModel m = (DefaultTableModel) tabla1.getModel();
+                m.addRow(row);
+                tabla1.setModel(m);
+        }
+        
+        listar_registros.pack();
+        listar_registros.setModal(true);
+        listar_registros.setLocationRelativeTo(this);
+        listar_registros.setVisible(true);
             /*
             String cadenaRegistros = "";
             try {
@@ -2047,6 +2129,10 @@ public class MainMenu extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_bt_borrarRegistrosActionPerformed
+
+    private void listar_camposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_camposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listar_camposActionPerformed
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
@@ -2246,6 +2332,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_abrirArchivo;
     private javax.swing.JButton jb_cerrarArchivo;
     private javax.swing.JButton jb_nuevoarchivo;
@@ -2255,6 +2342,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> keycampo;
     private javax.swing.JComboBox<String> keycampo1;
     private javax.swing.JButton listar_campos;
+    private javax.swing.JDialog listar_registros;
     private javax.swing.JDialog menuRegistros;
     private javax.swing.JLabel nombreCampo0;
     private javax.swing.JLabel nombreCampo1;
@@ -2282,6 +2370,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;
     private javax.swing.JTable tabla;
+    private javax.swing.JTable tabla1;
     private javax.swing.JTextField tf_nombrecampo;
     private javax.swing.JTextField tf_nombrecampo1;
     private javax.swing.JTextField tipoCampo;
