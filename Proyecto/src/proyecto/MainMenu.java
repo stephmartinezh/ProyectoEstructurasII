@@ -1543,7 +1543,7 @@ public class MainMenu extends javax.swing.JFrame {
             //se actualiza el contador de registros en la metadata
             ap.actualizar();
 
-<<<<<<< HEAD
+
             
         //}else{
         
@@ -1589,9 +1589,7 @@ public class MainMenu extends javax.swing.JFrame {
 <<<<<<< HEAD
         
         */
-=======
 
->>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
 
         ap.write_arbol();
@@ -2143,13 +2141,7 @@ public class MainMenu extends javax.swing.JFrame {
             m.addRow(row);
             tabla1.setModel(m);
         }
-<<<<<<< HEAD
-        
-        
-        
-=======
 
->>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         listar_registros.pack();
         listar_registros.setModal(true);
         listar_registros.setLocationRelativeTo(this);
@@ -2173,12 +2165,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void guardar_arbol(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_guardar_arbol
         // TODO add your handling code here:
         ap.write_arbol();
-<<<<<<< HEAD
-        
-        
-=======
 
->>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
     }//GEN-LAST:event_guardar_arbol
 
     private void insertarRegistrosWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_insertarRegistrosWindowGainedFocus
@@ -2200,7 +2187,7 @@ public class MainMenu extends javax.swing.JFrame {
         int RRN = ap.getArbol().search(ap.getArbol().root, llave);
         if (RRN == -1) {
             //la llave no se encuentra
-<<<<<<< HEAD
+
             System.out.println("not found");
         }else{
             
@@ -2208,16 +2195,7 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getAvailist().add(RRN);
             ap.getArbol().delete_key(ap.getArbol().root,llave);
             
-=======
-        } else {
 
-            //guardar RRN en avail
-            ap.getAvailist().add(RRN);
-
-            //eliminar
-            ap.getArbol().delete_key(ap.getArbol().root, llave);
-
->>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         }
 
     }//GEN-LAST:event_bt_borrarRegistrosActionPerformed

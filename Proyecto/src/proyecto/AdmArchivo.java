@@ -119,9 +119,10 @@ public class AdmArchivo {
         File filename=new File(archivo.getParent()+"\\reg_"+archivo.getName());
         try {
             ObjectInputStream leer = new ObjectInputStream(new FileInputStream(filename));
+            Registro var;
             for (int i = 0; i <= 10; i++) {
                 //agregamos 10 registros
-                Registro var=(Registro)leer.readObject();
+                var=(Registro)leer.readObject();
                 registros_10.add(var);
             }
              
