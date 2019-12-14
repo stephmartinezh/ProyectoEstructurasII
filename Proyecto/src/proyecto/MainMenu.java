@@ -922,6 +922,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         tabla1.setToolTipText("");
+        tabla1.setEnabled(false);
         tabla1.setSelectionBackground(new java.awt.Color(153, 153, 0));
         tabla1.setSelectionForeground(new java.awt.Color(153, 153, 0));
         jScrollPane3.setViewportView(tabla1);
