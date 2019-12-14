@@ -640,6 +640,11 @@ public class MainMenu extends javax.swing.JFrame {
                 bt_borrarRegistrosMouseClicked(evt);
             }
         });
+        bt_borrarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_borrarRegistrosActionPerformed(evt);
+            }
+        });
 
         bt_listarRegistros.setFont(new java.awt.Font("Segoe UI Emoji", 0, 11)); // NOI18N
         bt_listarRegistros.setText("Listar Registros");
@@ -2016,6 +2021,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void guardar_arbol(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_guardar_arbol
         // TODO add your handling code here:
         ap.write_arbol();
+        
     }//GEN-LAST:event_guardar_arbol
 
     private void insertarRegistrosWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_insertarRegistrosWindowGainedFocus
@@ -2030,6 +2036,17 @@ public class MainMenu extends javax.swing.JFrame {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_insertarRegistrosWindowGainedFocus
+
+    private void bt_borrarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosActionPerformed
+        // TODO add your handling code here:
+        
+        int llave=Integer.parseInt(JOptionPane.showInputDialog("ingrese campo llave a eliminar"));
+        
+        ap.getArbol().delete_key(ap.getArbol().root, llave);
+        
+        
+        
+    }//GEN-LAST:event_bt_borrarRegistrosActionPerformed
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
