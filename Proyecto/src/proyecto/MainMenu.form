@@ -174,7 +174,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listar_camposMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listar_camposActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
@@ -801,35 +800,26 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="nombreRegistro7" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                                          <Component id="nombreCampo7" min="-2" pref="143" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="nombreRegistro8" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                                          <Component id="nombreCampo8" min="-2" pref="143" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="nombreRegistro9" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                                          <Component id="nombreCampo9" min="-2" pref="143" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Component id="nombreRegistro7" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                  <Component id="nombreCampo7" min="-2" pref="143" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="guardarRegistro" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                  <Component id="salirInsertar" min="-2" pref="77" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nombreRegistro8" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                  <Component id="nombreCampo8" min="-2" pref="143" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nombreRegistro9" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                  <Component id="nombreCampo9" min="-2" pref="143" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -881,6 +871,14 @@
                                   <Component id="nombreCampo4" min="-2" pref="143" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="374" max="-2" attributes="0"/>
+                          <Component id="bt_modificar" min="-2" pref="93" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="guardarRegistro" min="-2" pref="99" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="salirInsertar" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -954,6 +952,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="guardarRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="salirInsertar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_modificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -1124,6 +1123,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nombreRegistro9">
+        </Component>
+        <Component class="javax.swing.JButton" name="bt_modificar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_modificarMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
