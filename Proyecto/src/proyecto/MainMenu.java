@@ -41,15 +41,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     AdmArchivo ap;
     String nombreArchivo;
-    int cantidadCampos = 0;
+    int cantidadCampos = 0, llaveModificar;
     JFileChooser seleccionar = new JFileChooser();
     FileOutputStream salida;
     File archivo2;
     int condAbrirArchivos = 0, cont = 1;
     boolean key = false;
     ArrayList<Registro> registros = new ArrayList();
-    
-    
+
     //objeto globlal para restriccion jtextfield en insertar registros
     RestrictedTextField caja_registro0;
     RestrictedTextField caja_registro1;
@@ -163,9 +162,11 @@ public class MainMenu extends javax.swing.JFrame {
         nombreCampo8 = new javax.swing.JLabel();
         nombreCampo9 = new javax.swing.JLabel();
         nombreRegistro9 = new javax.swing.JTextField();
+        bt_modificar = new javax.swing.JButton();
         listar_registros = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
+        salir_listarReg = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -283,11 +284,6 @@ public class MainMenu extends javax.swing.JFrame {
         listar_campos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listar_camposMouseClicked(evt);
-            }
-        });
-        listar_campos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listar_camposActionPerformed(evt);
             }
         });
 
@@ -764,6 +760,13 @@ public class MainMenu extends javax.swing.JFrame {
         nombreCampo9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         nombreCampo9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        bt_modificar.setText("Modificar");
+        bt_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_modificarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout insertarRegistrosLayout = new javax.swing.GroupLayout(insertarRegistros.getContentPane());
         insertarRegistros.getContentPane().setLayout(insertarRegistrosLayout);
         insertarRegistrosLayout.setHorizontalGroup(
@@ -785,28 +788,22 @@ public class MainMenu extends javax.swing.JFrame {
                                 .addComponent(nombreCampo6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreRegistro7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(nombreCampo7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreRegistro8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(nombreCampo8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreRegistro9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(nombreCampo9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(insertarRegistrosLayout.createSequentialGroup()
-                                .addComponent(guardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(salirInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreRegistro9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(nombreCampo9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(insertarRegistrosLayout.createSequentialGroup()
                         .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18)
@@ -841,7 +838,14 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(nombreRegistro4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(insertarRegistrosLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(nombreCampo4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nombreCampo4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(insertarRegistrosLayout.createSequentialGroup()
+                        .addGap(374, 374, 374)
+                        .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(guardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(salirInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         insertarRegistrosLayout.setVerticalGroup(
@@ -896,9 +900,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(insertarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarRegistro)
-                    .addComponent(salirInsertar))
+                    .addComponent(salirInsertar)
+                    .addComponent(bt_modificar))
                 .addContainerGap())
         );
+
+        listar_registros.setTitle("Registros");
 
         tabla1.setBackground(new java.awt.Color(153, 153, 0));
         tabla1.setModel(new javax.swing.table.DefaultTableModel(
@@ -918,9 +925,17 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         tabla1.setToolTipText("");
+        tabla1.setEnabled(false);
         tabla1.setSelectionBackground(new java.awt.Color(153, 153, 0));
         tabla1.setSelectionForeground(new java.awt.Color(153, 153, 0));
         jScrollPane3.setViewportView(tabla1);
+
+        salir_listarReg.setText("Salir");
+        salir_listarReg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salir_listarRegMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout listar_registrosLayout = new javax.swing.GroupLayout(listar_registros.getContentPane());
         listar_registros.getContentPane().setLayout(listar_registrosLayout);
@@ -930,13 +945,19 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(listar_registrosLayout.createSequentialGroup()
+                .addGap(324, 324, 324)
+                .addComponent(salir_listarReg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         listar_registrosLayout.setVerticalGroup(
             listar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listar_registrosLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(salir_listarReg)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1165,9 +1186,8 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
+
     private void camposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camposMouseClicked
         ventanaCampo.pack();
         ventanaCampo.setModal(true);
@@ -1193,7 +1213,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void estandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estandarizacionMouseClicked
         try {
             ap.cargar_arreglo_10_registros();
-            registros=ap.getRegistros_10();
+            registros = ap.getRegistros_10();
             estandarizarxml();
             estandarizarexcel();
             //ventanaestand.pack();
@@ -1516,23 +1536,27 @@ public class MainMenu extends javax.swing.JFrame {
 
             registros.add(ap.getRegistro());
             //actualiza el contador
-            ap.setContador_de_registros(ap.getContador_de_registros()+1);
+            ap.setContador_de_registros(ap.getContador_de_registros() + 1);
             //guardar registro en archivo de registros
             ap.write_obj_registro();
 
             //se actualiza el contador de registros en la metadata
             ap.actualizar();
 
+<<<<<<< HEAD
             
         //}else{
         
             /*
+=======
+        } else {
+>>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
             //agregar en posicion proveniente del availist
-            int pop=ap.getAvailist().pop();
+            int pop = ap.getAvailist().pop();
             ap.setRegistro(new Registro(pop));
             ap.getRegistro().getData().add(nombreRegistro0.getText());
             //ingresar al arbol
-            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)),pop);
+            ap.getArbol().insert(Integer.parseInt(ap.getRegistro().getData().get(0)), pop);
             ap.getRegistro().getData().add(nombreRegistro1.getText());
             ap.getRegistro().getData().add(nombreRegistro2.getText());
             ap.getRegistro().getData().add(nombreRegistro3.getText());
@@ -1541,37 +1565,35 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getRegistro().getData().add(nombreRegistro6.getText());
             ap.getRegistro().getData().add(nombreRegistro7.getText());
             ap.getRegistro().getData().add(nombreRegistro8.getText());
-            
+
             registros.add(ap.getRegistro());
-            
-            File fileee=new File("reg.bin");
+
+            File fileee = new File("reg.bin");
             try {
                 //reemplazar en posicion adecuada
-                
+
                 //primero escribir en reg
                 ap.write_obj_registro_innewfile();
-                
+
                 //leer en bytes de reg
                 ap.read_registro_in_bytes_fromnew();
-                
-                
+
                 //escribir en bytes en posicion adecuada
-                ap.write_registro_in_bytes(pop*(int)fileee.length());
-                
-                
-                
-                
+                ap.write_registro_in_bytes(pop * (int) fileee.length());
+
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
         }
+<<<<<<< HEAD
         
         */
+=======
+
+>>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         JOptionPane.showMessageDialog(this, "El registro fue guardado exitosamente");
-        
-        
+
         ap.write_arbol();
 
         /*
@@ -1632,23 +1654,28 @@ public class MainMenu extends javax.swing.JFrame {
     private void bt_buscarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_buscarRegistrosMouseClicked
 
         int llave = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
-        if (ap.getArbol().search(ap.getArbol().root, llave)==-1) {
-            System.out.println("registro no encontrado");
-        }else{
-            
+        if (ap.getArbol().search(ap.getArbol().root, llave) == -1) {
+            JOptionPane.showMessageDialog(null, "Registro no encontrado");
+        } else {
+
             try {
                 //leer el tamaño desde reg
-                File filename=new File("reg.bin");
-                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave), (int)filename.length());//encuentra la llave y nos devuelve el RRN asociado - multiplicamos por el tamaño del registro para encontrar la posicion exacta
+                File filename = new File("reg.bin");
+                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llave), (int) filename.length());//encuentra la llave y nos devuelve el RRN asociado - multiplicamos por el tamaño del registro para encontrar la posicion exacta
                 ap.write_registro_innewfile();
                 ap.read_obj_registro();
-                JOptionPane.showMessageDialog(null, ap.getRegistro().getData());
+                ArrayList<String> arrayRegistro = ap.getRegistro().getData();
+                String registroFinal = "";
+                for (int i = 0; i < arrayRegistro.size(); i++) {
+                    registroFinal += arrayRegistro.get(i);
+                    registroFinal += " ";
+                }
+                JOptionPane.showMessageDialog(null, registroFinal);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        
         //idea de Btree
 
         /*insertarRegistros.pack();
@@ -1659,13 +1686,33 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_buscarRegistrosMouseClicked
 
     private void bt_modificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarRegistrosMouseClicked
+        llaveModificar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la llave del registro"));
+        if (ap.getArbol().search(ap.getArbol().root, llaveModificar) == -1) {
+            JOptionPane.showMessageDialog(null, "Registro no encontrado");
+        } else {
 
+            try {
+                //leer el tamaño desde reg
+                File filename = new File("reg.bin");
+                ap.read_registro_in_bytes(ap.getArbol().search(ap.getArbol().root, llaveModificar), (int) filename.length());//encuentra la llave y nos devuelve el RRN asociado - multiplicamos por el tamaño del registro para encontrar la posicion exacta
+                ap.write_registro_innewfile();
+                ap.read_obj_registro();
+                guardarRegistro.setEnabled(false);
+                insertarRegistros.pack();
+                insertarRegistros.setModal(true);
+                insertarRegistros.setLocationRelativeTo(this);
+                insertarRegistros.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_bt_modificarRegistrosMouseClicked
 
     private void bt_introducirRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_introducirRegistrosActionPerformed
         // TODO add your handling code here:
         //se restringe el uso de las cajas de registro en base a los campos [tipo de dato y size]
         //caja de registro 0
+        bt_modificar.setEnabled(false);
         if (0 < ap.getCampos().size()) {
             switch (ap.getCampos().get(0).tipo) {
                 case "String":
@@ -2060,26 +2107,22 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_listarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarRegistrosActionPerformed
 
-            
+        try {
+            // TODO add your handling code here:
+            //registros=ap.cargar_arreglo_10_registros(registros);
+            ap.cargar_arreglo_10_registros();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            try {
-                // TODO add your handling code here:
-                //registros=ap.cargar_arreglo_10_registros(registros);
-                ap.cargar_arreglo_10_registros();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-
-            
-            tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean[]{
                 false
@@ -2095,29 +2138,24 @@ public class MainMenu extends javax.swing.JFrame {
         });
         
         for (Registro t : ap.getRegistros_10()) {
-                Object row[] = {t.getData().get(0), t.getData().get(1), t.getData().get(2), t.getData().get(3), t.getData().get(4), t.getData().get(5), t.getData().get(6), t.getData().get(7), t.getData().get(8)};
-                DefaultTableModel m = (DefaultTableModel) tabla1.getModel();
-                m.addRow(row);
-                tabla1.setModel(m);
+            Object row[] = {t.getData().get(0), t.getData().get(1), t.getData().get(2), t.getData().get(3), t.getData().get(4), t.getData().get(5), t.getData().get(6), t.getData().get(7), t.getData().get(8)};
+            DefaultTableModel m = (DefaultTableModel) tabla1.getModel();
+            m.addRow(row);
+            tabla1.setModel(m);
         }
+<<<<<<< HEAD
         
         
         
+=======
+
+>>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         listar_registros.pack();
         listar_registros.setModal(true);
         listar_registros.setLocationRelativeTo(this);
         listar_registros.setVisible(true);
-            
 
-        
 
-            
-            
-        
-        
-        
-        
-        
     }//GEN-LAST:event_bt_listarRegistrosActionPerformed
 
     private void bt_borrarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosMouseClicked
@@ -2129,22 +2167,26 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getRegistro().setIndicador('*');
             ap.getRegistro().setRRNSig(availist.obtenerSiguiente(availist.getSize() - 1));
         }
-        */
+         */
     }//GEN-LAST:event_bt_borrarRegistrosMouseClicked
 
     private void guardar_arbol(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_guardar_arbol
         // TODO add your handling code here:
         ap.write_arbol();
+<<<<<<< HEAD
         
         
+=======
+
+>>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
     }//GEN-LAST:event_guardar_arbol
 
     private void insertarRegistrosWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_insertarRegistrosWindowGainedFocus
         // TODO add your handling code here:
-        
+
         //cada vez que entramos a la ventana de insertar registros actualiza el contador de registros
         try {
-            
+
             //obtenermos el conteo de registros
             ap.read_contadador_registro_from_file();
         } catch (IOException ex) {
@@ -2154,10 +2196,11 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bt_borrarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_borrarRegistrosActionPerformed
         // TODO add your handling code here:
-        int llave=Integer.parseInt(JOptionPane.showInputDialog("ingrese campo llave a eliminar"));
-        int RRN=ap.getArbol().search(ap.getArbol().root,llave);
-        if (RRN==-1) {
+        int llave = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la llave del campo que desea eliminar"));
+        int RRN = ap.getArbol().search(ap.getArbol().root, llave);
+        if (RRN == -1) {
             //la llave no se encuentra
+<<<<<<< HEAD
             System.out.println("not found");
         }else{
             
@@ -2165,15 +2208,42 @@ public class MainMenu extends javax.swing.JFrame {
             ap.getAvailist().add(RRN);
             ap.getArbol().delete_key(ap.getArbol().root,llave);
             
+=======
+        } else {
+
+            //guardar RRN en avail
+            ap.getAvailist().add(RRN);
+
+            //eliminar
+            ap.getArbol().delete_key(ap.getArbol().root, llave);
+
+>>>>>>> 3ea274f2bc55db583e1f53147549e46e8a6a2350
         }
-        
+
     }//GEN-LAST:event_bt_borrarRegistrosActionPerformed
 
 
-    private void listar_camposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_camposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listar_camposActionPerformed
+    private void bt_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarMouseClicked
+        //ap.getRegistro().getData().add(nombreRegistro0.getText());
+        //ap.getRegistro().getData().get(llaveModificar).
+        
+        nombreRegistro0.setText("");
+        nombreRegistro1.setText("");
+        nombreRegistro2.setText("");
+        nombreRegistro3.setText("");
+        nombreRegistro4.setText("");
+        nombreRegistro5.setText("");
+        nombreRegistro6.setText("");
+        nombreRegistro7.setText("");
+        nombreRegistro8.setText("");
+        nombreRegistro9.setText("");
+        JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+        insertarRegistros.setVisible(false);
+    }//GEN-LAST:event_bt_modificarMouseClicked
 
+    private void salir_listarRegMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_listarRegMouseClicked
+        listar_registros.setVisible(false);
+    }//GEN-LAST:event_salir_listarRegMouseClicked
 
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
@@ -2235,62 +2305,56 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }
 
-    
- public  void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException{
-                DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder=factory.newDocumentBuilder();
-                DOMImplementation implementation= builder.getDOMImplementation();
+    public void estandarizarxml() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        DOMImplementation implementation = builder.getDOMImplementation();
 
-                Document documento= implementation.createDocument(null, "Archivo", null);
-                documento.setXmlVersion("1.0");
-                for (int i = 0; i < registros.size(); i++) {
-                org.w3c.dom.Element register = documento.createElement("Registro"+i);     
-            
-               
-                    for (int j = 0; j < ap.getCampos().size(); j++) {
-                    org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
-                    Text texto=documento.createTextNode(registros.get(i).getData().get(j)); 
-                    campo.appendChild(texto);
-                    register.appendChild(campo);
-                    }
-                     documento.getDocumentElement().appendChild(register);
-                }
+        Document documento = implementation.createDocument(null, "Archivo", null);
+        documento.setXmlVersion("1.0");
+        for (int i = 0; i < registros.size(); i++) {
+            org.w3c.dom.Element register = documento.createElement("Registro" + i);
 
-
-
-
-            //}
-               
-
-                Source source= new DOMSource(documento);
-                Result result= new StreamResult(new File ("Archivo.xml"));
-                Transformer transformer= TransformerFactory.newInstance().newTransformer();
-                transformer.transform(source, result);
-        }
-        
-        public void estandarizarexcel() throws IOException, WriteException{
-            WorkbookSettings conf= new WorkbookSettings();
-            conf.setEncoding("ISO-8859-1");
-            WritableWorkbook workbook = Workbook.createWorkbook(new File("Registros.xls"));
-            WritableSheet sheet = workbook.createSheet("Registro", 0);
-            WritableFont fuente = new WritableFont(WritableFont.TIMES,12, WritableFont.NO_BOLD);
-            WritableFont f2 = new WritableFont(WritableFont.TIMES,14, WritableFont.BOLD);
-            WritableCellFormat cformat = new WritableCellFormat(fuente);
-            WritableCellFormat cformat2 = new WritableCellFormat(f2);
-            for (int i = 0; i <registros.size() ; i++) {
-                for (int j = 0; j <ap.getCampos().size() ; j++) {
-                   sheet.addCell(new jxl.write.Label(j, i, ap.getCampos().get(j).getNombre(),cformat2)); 
-                }
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                org.w3c.dom.Element campo = documento.createElement(ap.getCampos().get(j).getNombre());
+                Text texto = documento.createTextNode(registros.get(i).getData().get(j));
+                campo.appendChild(texto);
+                register.appendChild(campo);
             }
-            for (int i = 1; i < registros.size(); i++) {
-                for (int j = 0; j < ap.getCampos().size(); j++) {
-                   sheet.addCell(new jxl.write.Label(j, i,registros.get(i).getData().get(j),cformat)); 
-                }
-            }
-            
-            workbook.write();
-            workbook.close();
+            documento.getDocumentElement().appendChild(register);
         }
+
+        //}
+        Source source = new DOMSource(documento);
+        Result result = new StreamResult(new File("Archivo.xml"));
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.transform(source, result);
+    }
+
+    public void estandarizarexcel() throws IOException, WriteException {
+        WorkbookSettings conf = new WorkbookSettings();
+        conf.setEncoding("ISO-8859-1");
+        WritableWorkbook workbook = Workbook.createWorkbook(new File("Registros.xls"));
+        WritableSheet sheet = workbook.createSheet("Registro", 0);
+        WritableFont fuente = new WritableFont(WritableFont.TIMES, 12, WritableFont.NO_BOLD);
+        WritableFont f2 = new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD);
+        WritableCellFormat cformat = new WritableCellFormat(fuente);
+        WritableCellFormat cformat2 = new WritableCellFormat(f2);
+        for (int i = 0; i < registros.size(); i++) {
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                sheet.addCell(new jxl.write.Label(j, i, ap.getCampos().get(j).getNombre(), cformat2));
+            }
+        }
+        for (int i = 1; i < registros.size(); i++) {
+            for (int j = 0; j < ap.getCampos().size(); j++) {
+                sheet.addCell(new jxl.write.Label(j, i, registros.get(i).getData().get(j), cformat));
+            }
+        }
+
+        workbook.write();
+        workbook.close();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2335,6 +2399,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton bt_buscarRegistros;
     private javax.swing.JButton bt_introducirRegistros;
     private javax.swing.JButton bt_listarRegistros;
+    private javax.swing.JButton bt_modificar;
     private javax.swing.JButton bt_modificarRegistros;
     private javax.swing.JButton bt_salirRegistros;
     private javax.swing.JButton campos;
@@ -2408,6 +2473,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton registro;
     private javax.swing.JButton salirInsertar;
     private javax.swing.JButton salir_MenuCampo;
+    private javax.swing.JButton salir_listarReg;
     private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;
     private javax.swing.JTable tabla;
