@@ -166,6 +166,7 @@ public class MainMenu extends javax.swing.JFrame {
         listar_registros = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
+        salir_listarReg = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campos = new javax.swing.JButton();
@@ -904,6 +905,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        listar_registros.setTitle("Registros");
+
         tabla1.setBackground(new java.awt.Color(153, 153, 0));
         tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -927,6 +930,13 @@ public class MainMenu extends javax.swing.JFrame {
         tabla1.setSelectionForeground(new java.awt.Color(153, 153, 0));
         jScrollPane3.setViewportView(tabla1);
 
+        salir_listarReg.setText("Salir");
+        salir_listarReg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salir_listarRegMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout listar_registrosLayout = new javax.swing.GroupLayout(listar_registros.getContentPane());
         listar_registros.getContentPane().setLayout(listar_registrosLayout);
         listar_registrosLayout.setHorizontalGroup(
@@ -935,13 +945,19 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(listar_registrosLayout.createSequentialGroup()
+                .addGap(324, 324, 324)
+                .addComponent(salir_listarReg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         listar_registrosLayout.setVerticalGroup(
             listar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listar_registrosLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(salir_listarReg)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2192,6 +2208,10 @@ public class MainMenu extends javax.swing.JFrame {
         insertarRegistros.setVisible(false);
     }//GEN-LAST:event_bt_modificarMouseClicked
 
+    private void salir_listarRegMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_listarRegMouseClicked
+        listar_registros.setVisible(false);
+    }//GEN-LAST:event_salir_listarRegMouseClicked
+
     public void introducir() {
         ArrayList<String> camposFinales = new ArrayList();
         String[] campoNombre = null;
@@ -2420,6 +2440,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton registro;
     private javax.swing.JButton salirInsertar;
     private javax.swing.JButton salir_MenuCampo;
+    private javax.swing.JButton salir_listarReg;
     private javax.swing.JButton salir_modificarCampo;
     private javax.swing.JButton salir_ventanaArchivo;
     private javax.swing.JTable tabla;
